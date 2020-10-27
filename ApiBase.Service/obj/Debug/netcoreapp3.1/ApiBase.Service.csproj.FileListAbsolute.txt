@@ -1,0 +1,9 @@
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\bin\Debug\netcoreapp3.1\ApiBase.Service.deps.json
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\bin\Debug\netcoreapp3.1\ApiBase.Service.dll
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\bin\Debug\netcoreapp3.1\ApiBase.Service.pdb
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\obj\Debug\netcoreapp3.1\ApiBase.Service.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\obj\Debug\netcoreapp3.1\ApiBase.Service.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\obj\Debug\netcoreapp3.1\ApiBase.Service.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\obj\Debug\netcoreapp3.1\ApiBase.Service.AssemblyInfo.cs
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\obj\Debug\netcoreapp3.1\ApiBase.Service.dll
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Service\obj\Debug\netcoreapp3.1\ApiBase.Service.pdb

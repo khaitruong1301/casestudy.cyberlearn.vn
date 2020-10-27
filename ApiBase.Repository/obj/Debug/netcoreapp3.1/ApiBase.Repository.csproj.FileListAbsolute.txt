@@ -1,0 +1,8 @@
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\bin\Debug\netcoreapp3.1\ApiBase.Repository.deps.json
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\bin\Debug\netcoreapp3.1\ApiBase.Repository.dll
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\bin\Debug\netcoreapp3.1\ApiBase.Repository.pdb
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\obj\Debug\netcoreapp3.1\ApiBase.Repository.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\obj\Debug\netcoreapp3.1\ApiBase.Repository.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\obj\Debug\netcoreapp3.1\ApiBase.Repository.AssemblyInfo.cs
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\obj\Debug\netcoreapp3.1\ApiBase.Repository.dll
+C:\Users\HP\source\repos\ApiBase.Web\ApiBase.Repository\obj\Debug\netcoreapp3.1\ApiBase.Repository.pdb
