@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\ApiBase.Repository.csproj": {}
+    "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {}
   },
   "projects": {
-    "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\ApiBase.Repository.csproj": {
+    "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\ApiBase.Repository.csproj",
+        "projectUniqueName": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
         "projectName": "ApiBase.Repository",
-        "projectPath": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\ApiBase.Repository.csproj",
+        "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\obj\\",
+        "outputPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

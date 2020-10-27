@@ -7273,11 +7273,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Service\\ApiBase.Service.csproj",
+      "projectUniqueName": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
       "projectName": "ApiBase.Service",
-      "projectPath": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Service\\ApiBase.Service.csproj",
+      "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Service\\obj\\",
+      "outputPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7293,8 +7293,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\ApiBase.Repository.csproj": {
-              "projectPath": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\ApiBase.Repository.csproj"
+            "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
+              "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj"
             }
           }
         }

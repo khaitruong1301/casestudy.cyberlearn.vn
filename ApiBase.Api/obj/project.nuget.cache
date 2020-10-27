@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q/Ql3NDZXc4Z67bpUZ+MVy1O796KxyZLDBDfKjRJfwj6wvZLCNVlLSdeT6QkSVF6PJ6SUragr2vTBpHV9NB34A==",
+  "dgSpecHash": "SD+uToZdgrB/e8vAO+VT1DcggOTbROqNVJj31Ht2cZgvqQq3veomA0fY/4e3yIwWK54XZvc4GJBOv8Ul1KKE/w==",
   "success": true,
-  "projectFilePath": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Api\\ApiBase.Api.csproj",
+  "projectFilePath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",

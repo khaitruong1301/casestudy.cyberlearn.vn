@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IL165c3Zs6CczKP5mGLK0P/0sCvd63bDKrygrjVBs+qp7CYxgE0QnvTjoVS7Z34ou37tnQwdyzfS13YjcYC2Gw==",
+  "dgSpecHash": "HooKypOVIjSpPpe7oSw5G6WEUXvcK0JueDa8Dc24VctA7zjsQLPibixinYZoIcj4vK8xKyGMAnSvCydMQGOeAw==",
   "success": true,
-  "projectFilePath": "D:\\cybersoft\\jira_clone_backend\\api_base_initialize--api_base_initialize\\ApiBase.Repository\\ApiBase.Repository.csproj",
+  "projectFilePath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\dapper\\2.0.30\\dapper.2.0.30.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.1.1\\microsoft.extensions.configuration.abstractions.2.1.1.nupkg.sha512",
