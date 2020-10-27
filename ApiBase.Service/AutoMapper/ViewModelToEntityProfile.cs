@@ -6,8 +6,6 @@ using ApiBase.Service.Utilities;
 using ApiBase.Service.ViewModels.Users;
 using ApiBase.Service.ViewModels.ProductViewModel;
 using ApiBase.Service.ViewModels.Authorize;
-using ApiBase.Service.ViewModels.ProductCategoryViewModel;
-using ApiBase.Service.ViewModels.Store;
 
 namespace ApiBase.Service.AutoMapper
 {
@@ -96,6 +94,9 @@ namespace ApiBase.Service.AutoMapper
            
             CreateMap<UserViewModel, AppUser>();
             CreateMap<InfoUser, AppUser>();
+
+            CreateMap<UserJiraModel, UserJira>();
+
             //CreateMap<InfoUser, UserViewModel>();
 
 
@@ -109,8 +110,6 @@ namespace ApiBase.Service.AutoMapper
             CreateMap<RoleViewModel, Role>();
             CreateMap<UserTypeViewModel, UserType>();
             CreateMap<UserType_RoleViewModel ,UserType_Role >();
-            CreateMap<ProductCategoryViewModel, Category>();
-            CreateMap<StoreViewModel, Store>();
 
         }
     }

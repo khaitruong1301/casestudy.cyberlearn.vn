@@ -1,8 +1,6 @@
 ﻿using ApiBase.Repository.Models;
 using ApiBase.Service.ViewModels.Authorize;
-using ApiBase.Service.ViewModels.ProductCategoryViewModel;
 using ApiBase.Service.ViewModels.ProductViewModel;
-using ApiBase.Service.ViewModels.Store;
 using ApiBase.Service.ViewModels.Users;
 using AutoMapper;
 using Newtonsoft.Json;
@@ -113,15 +111,13 @@ namespace ApiBase.Service.AutoMapper
             CreateMap<AppUser, UserViewModel>();
             //Sản phẩm
             CreateMap<Product, ProductViewModel>();
+
+            CreateMap<UserJira, UserJiraModel>();
+
             //Authorize
             CreateMap<Role, RoleViewModel>();
             CreateMap<UserType, UserTypeViewModel>();
             CreateMap<UserType_Role, UserType_RoleViewModel>();
-
-            CreateMap<Category, ProductCategoryViewModel>();
-            CreateMap<Store, StoreViewModel>();
-
-
 
 
         }

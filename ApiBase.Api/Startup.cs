@@ -29,7 +29,8 @@ using AutoMapper;
 using ApiBase.Service.AutoMapper;
 using ApiBase.Api.Filter;
 using ApiBase.Service.Services.UserService;
-using ApiBase.Repository.Models;
+using ApiBase.Service.Services.CommentService;
+using ApiBase.Service.Services.PriorityService;
 
 namespace ApiBase.Api
 {
@@ -48,37 +49,66 @@ namespace ApiBase.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // ================= Get host =================
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            // Or you can also register as follows
-
-            services.AddHttpContextAccessor();
-
 
             // ========================== Product =============
             services.AddSingleton<IProductRepository, ProductRepository>();
             services.AddSingleton<IProductManagementService, ProductManagementService>();
-            services.AddSingleton<IStoreRepository, StoreRepository>();
-            // ========================== Category =============
-            services.AddSingleton<ICategoryRepository, CategoryRepository>();
-            services.AddSingleton<ICategoryService, CategoryService>();
+            //===================== ProjectCategory =====================
+            services.AddSingleton<ICommentRepository, CommentRepository>();
+            services.AddSingleton<ICommentService, CommentService>();
 
-            //services.AddSingleton<ICategoryService, CategoryService>();
-            //========================= Order =============
-            services.AddSingleton<IOrderProductRepository, OrderProductRepository>();
+            //===================== useJira =====================
+            services.AddSingleton<IUserJiraRepository, UserJiraRepository>();
+
+            //===================== CommentCategory =====================
+            services.AddSingleton<IProjectCategoryRepository, ProjectCategoryRepository>();
+            services.AddSingleton<IProjectCategoryService, ProjectCategoryService>();
+
+            //===================== Project =====================
+            services.AddSingleton<IProjectRepository, ProjectRepository>();
+            services.AddSingleton<IProjectService, ProjectService>();
+
+            //===================== Status =====================
+            services.AddSingleton<IStatusRepository, StatusRepository>();
+            //===================== Priority =====================
+
+            services.AddSingleton<IPriorityService, PriorityService>();
+
+            //===================== Priority =====================
+            //services.AddSingleton<ITaskRepository, TaskRepository>();
+            services.AddSingleton<ITaskRepository, TaskRepository>();
+
+            //===================== Comment =====================
+            services.AddSingleton<ICommentRepository, CommentRepository>();
+            //===================== Task_User ================
+            services.AddSingleton<ITask_UserRepository, Task_UserRepository>();
+            //========================== Task ==================
+            services.AddSingleton<ITaskTypeRepository, TaskTypeRepository>();
+
+
+
+            ////===================== ProjectCategory =====================
+            //services.AddSingleton<IProjectCategoryRepository, ProjectCategoryRepository>();
+            //services.AddSingleton<IProjectCategoryService, ProjectCategoryService>();
+            ////===================== CommentCategory =====================
+            //services.AddSingleton<IProjectCategoryRepository, ProjectCategoryRepository>();
+            //services.AddSingleton<IProjectCategoryService, ProjectCategoryService>();
+
+
+            //===================== Priority ============================
+
+            services.AddSingleton<IPriorityRepository, PriorityRepository>();
+            services.AddSingleton<IPriorityService, PriorityService>();
 
             // ========================== User ================
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IUserService, UserService>();
-            //======================= File =====================
-            services.AddSingleton<IFileService, FileService>();
-
+            //services.AddSingleton<IUserService, UserService>();
             // ========================== Authorize ===========
             services.AddSingleton<IUserTypeRepository, UserTypeRepository>();
             services.AddSingleton<IRoleRepository, RoleRepository>();
             services.AddSingleton<IUserType_RoleRepository, UserType_RoleRepository>();
-            
+
             // ==================== HELPER ====================
             services.AddSingleton<IFacebookService, FacebookService>();
             services.AddSingleton<IMailService, MailService>();
@@ -90,10 +120,13 @@ namespace ApiBase.Api
             {
                 options.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
             });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "API", Version = "v1" });
             });
+
+            
 
             // ==================== CORS ORIGIN ====================
             services.AddCors(

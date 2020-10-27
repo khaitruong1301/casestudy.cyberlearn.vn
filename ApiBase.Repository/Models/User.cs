@@ -17,7 +17,6 @@ namespace ApiBase.Repository.Models
         public string userTypeId { get; set; }
         public bool deleted { get; set; }
         public string avatar { get; set; }
-        public string favoriteProducts { get; set; }
 
     }
 }

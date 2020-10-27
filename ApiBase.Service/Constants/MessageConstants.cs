@@ -3,10 +3,10 @@
     public class MessageConstants
     {
         public static string MESSAGE_ERROR_400 = "Yêu cầu không hợp lệ!";
+        public static string MESSAGE_ERROR_401 = "Không đủ quyền truy cập!";
         public static string MESSAGE_ERROR_404 = "Không tìm thấy tài nguyên!";
-        public static string MESSAGE_ERROR_500 = "Xảy ra lỗi chưa xử lý!";
-        public static string MESSAGE_SUCCESS_200 = "Thành công!";
-
+        public static string MESSAGE_ERROR_500 = "Dữ liệu không hợp lệ!";
+        public static string MESSAGE_SUCCESS_200 = "Xử lý thành công!";
 
         public static string INSERT_SUCCESS = "Thêm mới thành công!";
         public static string INSERT_ERROR = "Thêm mới thất bại!";

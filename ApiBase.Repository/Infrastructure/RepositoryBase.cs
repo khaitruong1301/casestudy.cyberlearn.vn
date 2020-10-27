@@ -34,14 +34,9 @@ namespace ApiBase.Repository.Infrastructure
         Task<IEnumerable<T>> GetMultiByListConditionAsync(List<KeyValuePair<string, dynamic>> columns);
         Task<IEnumerable<T>> GetMultiByListConditionAndAsync(List<KeyValuePair<string, dynamic>> columns);
 
-
-        
-
         Task<T> GetSingleByConditionAsync(string column, dynamic value);
 
         Task<IEnumerable<T>> GetMultiByConditionAsync(string column, dynamic value);
-        Task<IEnumerable<T>> GetMultiByConditionLikeAsync(string column, dynamic value);
-
 
         Task<int> DeleteByIdAsync(List<dynamic> listId);
 
@@ -354,25 +349,7 @@ namespace ApiBase.Repository.Infrastructure
                 throw ex;
             }
         }
-        public async Task<IEnumerable<T>> GetMultiByConditionLikeAsync(string column, dynamic value)
-        {
-            var columns = new List<KeyValuePair<string, dynamic>>();
-            columns.Add(new KeyValuePair<string, dynamic>(column, value));
-            try
-            {
-                using (var conn = CreateConnection())
-                {
-                    var parameters = new DynamicParameters();
-                    parameters.Add("@tableName", _table);
-                    parameters.Add("@listColumn", JsonConvert.SerializeObject(columns));
-                    return await conn.QueryAsync<T>("GET_MULTI_DATA_LIKE", parameters, null, null, CommandType.StoredProcedure);
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
+
         public virtual async Task<int> DeleteByIdAsync(List<dynamic> listId)
         {
             try

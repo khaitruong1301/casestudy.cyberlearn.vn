@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace ApiBase.Service.Utilities
 {
@@ -153,6 +155,16 @@ namespace ApiBase.Service.Utilities
             DateTime dateNow = GetDateCurrent();
             TimeSpan ts = date - dateNow;
             return ts.Days;
+        }
+
+        public static string parseJWTToEmail(string tokenstring)
+        {
+
+            tokenstring = tokenstring.Replace("Bearer ", "");
+            //var stream = Encoding.ASCII.GetBytes("CYBERSOFT2020_SECRET");
+            var token = new JwtSecurityTokenHandler().ReadJwtToken(tokenstring);
+            var email = token.Claims.First(c => c.Type == ClaimTypes.Email).Value;
+            return email;
         }
     }
 }

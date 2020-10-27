@@ -6,7 +6,7 @@ namespace ApiBase.Repository.Models
 {
     public class Product
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string name { get; set; }
         public string alias { get; set; }
         public decimal price { get; set; }
@@ -17,7 +17,5 @@ namespace ApiBase.Repository.Models
         public bool deleted { get; set; }
         public string categories { get; set; }
         public string relatedProducts { get; set; }
-        public bool feature { get; set; }
-        public string image { get; set; }
     }
 }

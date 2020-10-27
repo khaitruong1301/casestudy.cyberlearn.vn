@@ -25,9 +25,8 @@ namespace ApiBase.Api.Swagger
                 {
                     Name = "Authorization",
                     In = "header",
-                    Description = "Nhập vào Bearer [token]",
+                    Description = "access token",
                     Required = true,
-                    
                     Type = "string"
                 });
             }
