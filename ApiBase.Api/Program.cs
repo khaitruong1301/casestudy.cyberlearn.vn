@@ -15,6 +15,10 @@ namespace ApiBase.Api
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+
+            //Enable DetailedErrorsKey in the Program.cs so you can figure it out what's happening.
+
+            WebHost.CreateDefaultBuilder(args).UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

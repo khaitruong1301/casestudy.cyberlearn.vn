@@ -34,3 +34,12 @@ D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase
 D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.csproj.CoreCompileInputs.cache
 D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.dll
 D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.pdb
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Debug\netcoreapp2.1\ApiBase.Repository.deps.json
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Debug\netcoreapp2.1\ApiBase.Repository.dll
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Debug\netcoreapp2.1\ApiBase.Repository.pdb
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.csprojAssemblyReference.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.AssemblyInfoInputs.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.AssemblyInfo.cs
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.csproj.CoreCompileInputs.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.dll
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Debug\netcoreapp2.1\ApiBase.Repository.pdb
