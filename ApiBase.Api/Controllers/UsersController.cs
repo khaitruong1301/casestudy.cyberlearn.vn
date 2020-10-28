@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiBase.Repository.Models;
 using ApiBase.Repository.Repository;
+using ApiBase.Service.Constants;
 using ApiBase.Service.Services.UserService;
 using ApiBase.Service.ViewModels;
 using ApiBase.Service.ViewModels.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -58,6 +60,16 @@ namespace ApiBase.Api.Controllers
         public async Task<IActionResult> FacebookLogin([FromBody] DangNhapFacebookViewModel model)
         {
             return await _userService.SignInFacebookAsync(model);
+        }
+
+
+
+        [HttpPost("TestToken")]
+        [Authorize]
+        public async Task<IActionResult> TestToken()
+        {
+
+            return  new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Okay ! đã check token được phép truy cập !", MessageConstants.SIGNIN_SUCCESS);
         }
     }
 }
