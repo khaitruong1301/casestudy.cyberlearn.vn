@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiBase.Api.Controllers
 {
@@ -29,11 +30,24 @@ namespace ApiBase.Api.Controllers
 
             return await _projectService.createProject(model);
         }
+
+        [Authorize]
+        [HttpPost("createProjectAuthorize")]
+        public async Task<IActionResult> createProjectAuthorize([FromBody] ProjectInsert model)
+        {
+
+
+            return await _projectService.createProject(model);
+        }
+        [Authorize]
+
         [HttpGet("getProjectDetail")]
         public async Task<IActionResult> getProjectDetail(int id)
         {
             return await _projectService.getProjectById(id);
         }
+        [Authorize]
+
         [HttpGet("getAllProject")]
         public async Task<IActionResult> getAllProject()
         {
