@@ -26,8 +26,6 @@ namespace ApiBase.Api.Controllers
         [HttpPost("createProject")]
         public async Task<IActionResult> createProject([FromBody] ProjectInsert model)
         {
-
-
             return await _projectService.createProject(model);
         }
 
@@ -35,8 +33,6 @@ namespace ApiBase.Api.Controllers
         [HttpPost("createProjectAuthorize")]
         public async Task<IActionResult> createProjectAuthorize([FromBody] ProjectInsert model)
         {
-
-
             return await _projectService.createProject(model);
         }
         [Authorize]
