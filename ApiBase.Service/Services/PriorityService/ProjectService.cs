@@ -4,6 +4,7 @@ using ApiBase.Service.Constants;
 using ApiBase.Service.Infrastructure;
 using ApiBase.Service.Utilities;
 using ApiBase.Service.ViewModels;
+using ApiBase.Service.ViewModels.ProjectViewModel;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
 using System;
@@ -20,6 +21,7 @@ namespace ApiBase.Service.Services.PriorityService
 
         Task<ResponseEntity> createProject(ProjectInsert model);
         Task<ResponseEntity> getProjectById(int? idProject);
+        Task<ResponseEntity> getAllProject();
 
 
     }
@@ -179,6 +181,19 @@ namespace ApiBase.Service.Services.PriorityService
             Priority pri = lst.Single(n => n.priorityId == id);
 
             return new TaskPriority() { priorityId = pri.priorityId, priority = pri.priority };
+        }
+
+        public async Task<ResponseEntity> getAllProject()
+        {
+            var lstProject = await _projectRepository.GetAllAsync();
+            var listResult = new List<ProjectViewModelResult>();
+            foreach(var n in lstProject)
+            {
+                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = n.description, categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId };
+                listResult.Add(result);
+            }
+
+            return new ResponseEntity(StatusCodeConstants.OK, listResult, MessageConstants.MESSAGE_SUCCESS_200);
         }
     }
 

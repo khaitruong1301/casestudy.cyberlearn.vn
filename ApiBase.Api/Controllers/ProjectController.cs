@@ -47,7 +47,7 @@ namespace ApiBase.Api.Controllers
         [HttpGet("getAllProject")]
         public async Task<IActionResult> getAllProject()
         {
-            return await _projectService.GetAllAsync();
+            return await _projectService.getAllProject();
         }
 
     }
