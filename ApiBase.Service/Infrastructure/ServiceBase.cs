@@ -167,7 +167,7 @@ namespace ApiBase.Service.Infrastructure
             {
                 if (await _repository.DeleteByIdAsync(listId) != 0)
                     return new ResponseEntity(StatusCodeConstants.OK, listId, MessageConstants.DELETE_SUCCESS);
-                return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, listId, MessageConstants.DELETE_ERROR);
+                return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, MessageConstants.DELETE_SUCCESS, MessageConstants.DELETE_ERROR);
             }
             catch (Exception ex)
             {
