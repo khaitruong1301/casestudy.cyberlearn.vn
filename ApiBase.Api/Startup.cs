@@ -58,6 +58,7 @@ namespace ApiBase.Api
             services.AddSingleton<ICommentService, CommentService>();
 
             //===================== useJira =====================
+            services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IUserJiraRepository, UserJiraRepository>();
 
             //===================== CommentCategory =====================

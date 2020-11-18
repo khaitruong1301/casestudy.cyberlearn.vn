@@ -2,6 +2,7 @@
 using ApiBase.Repository.Repository;
 using ApiBase.Service.Constants;
 using ApiBase.Service.Infrastructure;
+using ApiBase.Service.Services.UserService;
 using ApiBase.Service.Utilities;
 using ApiBase.Service.ViewModels;
 using ApiBase.Service.ViewModels.ProjectViewModel;
@@ -19,7 +20,7 @@ namespace ApiBase.Service.Services.PriorityService
     public interface IProjectService : IService<Project, Project>
     {
 
-        Task<ResponseEntity> createProject(ProjectInsert model);
+        Task<ResponseEntity> createProject(ProjectInsert model,string token="");
         Task<ResponseEntity> getProjectById(int? idProject);
         Task<ResponseEntity> getAllProject();
 
@@ -33,10 +34,12 @@ namespace ApiBase.Service.Services.PriorityService
         ITaskRepository _taskRepository;
         IPriorityRepository _priorityRepository;
         ITask_UserRepository _taskUserRepository;
-        IUserJiraRepository _userJira;
+        IUserJiraRepository _userJira; 
+        IUserService _userService;
+
         ICommentRepository _userComment;
 
-        public ProjectService(IProjectRepository proRe, IProjectCategoryRepository proCa, IStatusRepository status,ITaskRepository taskRe,IPriorityRepository pri,ITask_UserRepository taskUSer,IUserJiraRepository us,ICommentRepository cmt,
+        public ProjectService(IProjectRepository proRe, IProjectCategoryRepository proCa, IStatusRepository status,ITaskRepository taskRe,IPriorityRepository pri,ITask_UserRepository taskUSer,IUserJiraRepository us,ICommentRepository cmt, IUserService usService,
             IMapper mapper)
             : base(proRe, mapper)
         {
@@ -48,10 +51,11 @@ namespace ApiBase.Service.Services.PriorityService
             _taskUserRepository = taskUSer;
             _userJira = us;
             _userComment = cmt;
+            _userService = usService;
 
         }
 
-        public async Task<ResponseEntity> createProject(ProjectInsert model)
+        public async Task<ResponseEntity> createProject(ProjectInsert model,string token="")
         {
 
             
@@ -66,14 +70,23 @@ namespace ApiBase.Service.Services.PriorityService
                 return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Project name already exists", MessageConstants.MESSAGE_ERROR_500);
 
             }
-
+            
             Project newProject = new Project();
             newProject.alias = alias;
             newProject.categoryId = model.categoryId;
             newProject.deleted = false;
             newProject.description = model.description;
             newProject.projectName = model.projectName;
+            if(token != "")
+            {
+                var user = _userJira.GetSingleByConditionAsync("id", _userService.getUserByToken(token).Id);
+                newProject.creator = user.Id;
+            }else
+            {
+                newProject.creator = 1;//set mặc định khai admin
+            }
             newProject = await _projectRepository.InsertAsync(newProject);
+            
             
             return new ResponseEntity(StatusCodeConstants.OK, newProject, MessageConstants.MESSAGE_SUCCESS_200);
 
@@ -102,7 +115,14 @@ namespace ApiBase.Service.Services.PriorityService
             projectDetail.description = pro.description;
             projectDetail.id = pro.id;
             projectDetail.projectName = pro.projectName;
-           
+            CreatorModel creator = new CreatorModel();
+            if(pro.id != null)
+            {
+                creator.id = pro.creator;
+                creator.name = _userJira.GetSingleByIdAsync(pro.creator).Result.name;
+            }
+
+            projectDetail.creator = creator;
 
             //List<ProjectDetail> lstResult = new List<ProjectDetail>();
             var lstStatus = await _statusRepository.GetAllAsync();
@@ -189,7 +209,13 @@ namespace ApiBase.Service.Services.PriorityService
             var listResult = new List<ProjectViewModelResult>();
             foreach(var n in lstProject)
             {
-                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = n.description, categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId };
+                Creator creator = new Creator();
+                if(n.creator != null )
+                {
+                    creator.id = n.creator;
+                    creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
+                }
+                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = n.description, categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator  };
                 listResult.Add(result);
             }
 

@@ -15,6 +15,12 @@ namespace ApiBase.Service.ViewModels.ProjectViewModel
         public string categoryName { get; set; }
         public string alias { get; set; }
         public bool deleted { get; set; }
+        public Creator creator = new Creator();
     }
 
+    public class Creator
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+    }
 }

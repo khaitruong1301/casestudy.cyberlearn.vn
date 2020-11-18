@@ -11,6 +11,7 @@ namespace ApiBase.Repository.Models
         public int categoryId { get; set; }
         public string alias { get; set; }
         public bool deleted { get; set; }
+        public int creator { get; set; }
     }
 
     public class ProjectInsert
@@ -31,9 +32,14 @@ namespace ApiBase.Repository.Models
         public ProjectCategoryDetail projectCategory { get; set; }
         public string alias { get; set; }
         public List<StatusTask> lstTask = new List<StatusTask>();
+        public CreatorModel creator = new CreatorModel();
 
-    
+    }
 
+    public class CreatorModel
+    {
+        public int id { get; set; }
+        public string name { get; set; }
     }
     public class ProjectCategoryDetail {
         public int id { get; set; }
