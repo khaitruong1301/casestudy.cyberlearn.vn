@@ -107,4 +107,14 @@ namespace ApiBase.Repository.Models
         public string commentContent { get; set; }
 
     }
+
+    public class ProjectUpdate
+    {
+        public int id { get; set; }
+
+        public string projectName { get; set; }
+        public int creator { get; set; }
+        public string description { get; set; }
+        public string categoryId { get; set; }
+    }
 }

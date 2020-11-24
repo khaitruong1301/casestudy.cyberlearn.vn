@@ -22,6 +22,7 @@ namespace ApiBase.Service.Services.PriorityService
 
         Task<ResponseEntity> createProject(ProjectInsert model,string token="");
         Task<ResponseEntity> getProjectById(int? idProject);
+        Task<ResponseEntity> updateProject(int? idProject,ProjectUpdate projectUpdate);
         Task<ResponseEntity> getAllProject();
 
 
@@ -220,6 +221,30 @@ namespace ApiBase.Service.Services.PriorityService
             }
 
             return new ResponseEntity(StatusCodeConstants.OK, listResult, MessageConstants.MESSAGE_SUCCESS_200);
+        }
+
+        public async Task<ResponseEntity> updateProject(int? idProject=0, ProjectUpdate projectUpdate=null)
+        {
+          
+
+            Project project = _projectRepository.GetSingleByIdAsync(idProject).Result;
+            if(project == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            project.alias = FuncUtilities.BestLower(projectUpdate.projectName);
+            project.creator = projectUpdate.creator;
+            project.description = projectUpdate.description;
+            project.projectName = projectUpdate.projectName;
+
+            var result = _projectRepository.UpdateAsync(idProject, project).Result;
+
+            
+
+            return new ResponseEntity(StatusCodeConstants.NOT_FOUND, result, MessageConstants.MESSAGE_SUCCESS_200);
+
         }
     }
 

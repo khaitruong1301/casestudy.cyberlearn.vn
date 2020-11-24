@@ -62,5 +62,14 @@ namespace ApiBase.Api.Controllers
             return await _projectService.DeleteByIdAsync(lstId);
         }
 
+        [Authorize]
+
+        [HttpPut("updateProject")]
+        public async Task<IActionResult> updateProject(int? projectId, ProjectUpdate projectUpdate)
+        {
+            return await _projectService.updateProject(projectId,projectUpdate);
+        }
+
+      
     }
 }
