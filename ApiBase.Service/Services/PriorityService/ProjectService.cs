@@ -56,39 +56,44 @@ namespace ApiBase.Service.Services.PriorityService
 
         }
 
-        public async Task<ResponseEntity> createProject(ProjectInsert model,string token="")
+        public async Task<ResponseEntity> createProject(ProjectInsert model, string token = "")
         {
 
-            
+
 
             string alias = FuncUtilities.BestLower(model.projectName.Trim());
 
             var project = await _projectRepository.GetSingleByConditionAsync("alias", alias);
 
 
-            if(project != null )
+            if (project != null)
             {
                 return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Project name already exists", MessageConstants.MESSAGE_ERROR_500);
 
             }
-            
+            var projectCate = _projectCategoryRepository.GetSingleByConditionAsync("categoryId", model.categoryId).Result;
+            if (projectCate == null)
+            {
+                model.categoryId = 1;
+            }
             Project newProject = new Project();
             newProject.alias = alias;
             newProject.categoryId = model.categoryId;
             newProject.deleted = false;
             newProject.description = model.description;
             newProject.projectName = model.projectName;
-            if(token != "")
+            if (token != "")
             {
                 var user = _userJira.GetSingleByConditionAsync("id", _userService.getUserByToken(token).Id);
                 newProject.creator = user.Id;
-            }else
+            }
+            else
             {
                 newProject.creator = 1;//set mặc định khai admin
             }
             newProject = await _projectRepository.InsertAsync(newProject);
-            
-            
+
+
             return new ResponseEntity(StatusCodeConstants.OK, newProject, MessageConstants.MESSAGE_SUCCESS_200);
 
 
