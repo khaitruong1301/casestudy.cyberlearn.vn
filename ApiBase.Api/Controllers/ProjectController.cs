@@ -67,7 +67,9 @@ namespace ApiBase.Api.Controllers
         [HttpPut("updateProject")]
         public async Task<IActionResult> updateProject(int? projectId, ProjectUpdate projectUpdate)
         {
-            return await _projectService.updateProject(projectId,projectUpdate);
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+
+            return await _projectService.updateProject(projectId,projectUpdate, accessToken);
         }
 
       
