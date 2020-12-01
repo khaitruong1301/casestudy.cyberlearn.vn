@@ -2,10 +2,12 @@
 using ApiBase.Repository.Repository;
 using ApiBase.Service.Constants;
 using ApiBase.Service.Infrastructure;
+using ApiBase.Service.Services.Project_UserService;
 using ApiBase.Service.Services.UserService;
 using ApiBase.Service.Utilities;
 using ApiBase.Service.ViewModels;
 using ApiBase.Service.ViewModels.ProjectViewModel;
+using ApiBase.Service.ViewModels.Task;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
 using System;
@@ -23,7 +25,17 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> createProject(ProjectInsert model,string token="");
         Task<ResponseEntity> getProjectById(int? idProject);
         Task<ResponseEntity> updateProject(int? idProject,ProjectUpdate projectUpdate,string token);
+        Task<ResponseEntity> addUserProject(Project_User project,string token="");
+
         Task<ResponseEntity> getAllProject();
+        Task<ResponseEntity> updateStatusTask(UpdateStatusVM statusTask,string token );
+        Task<ResponseEntity> updatePiority(UpdatePiority model,string token);
+        Task<ResponseEntity> updateDescription(UpdateDescription model,string token);
+        Task<ResponseEntity> updateTimeTracking(TimeTrackingUpdate model,string token);
+        Task<ResponseEntity> updateEstimate(updateEstimate model,string token);
+        Task<ResponseEntity> addTaskUser(TaskUser model,string token);
+        Task<ResponseEntity> removeUserFromTask(TaskUser model,string token);
+        Task<ResponseEntity> removeUSerFromProject(Project_User model,string token);
 
 
     }
@@ -37,10 +49,11 @@ namespace ApiBase.Service.Services.PriorityService
         ITask_UserRepository _taskUserRepository;
         IUserJiraRepository _userJira; 
         IUserService _userService;
+        IProject_UserReponsitory _projectUserRepository;
 
         ICommentRepository _userComment;
 
-        public ProjectService(IProjectRepository proRe, IProjectCategoryRepository proCa, IStatusRepository status,ITaskRepository taskRe,IPriorityRepository pri,ITask_UserRepository taskUSer,IUserJiraRepository us,ICommentRepository cmt, IUserService usService,
+        public ProjectService(IProjectRepository proRe, IProjectCategoryRepository proCa, IStatusRepository status,ITaskRepository taskRe,IPriorityRepository pri,ITask_UserRepository taskUSer,IUserJiraRepository us,ICommentRepository cmt, IUserService usService, IProject_UserReponsitory project_userService,
             IMapper mapper)
             : base(proRe, mapper)
         {
@@ -53,6 +66,7 @@ namespace ApiBase.Service.Services.PriorityService
             _userJira = us;
             _userComment = cmt;
             _userService = usService;
+            _projectUserRepository = project_userService;
 
         }
 
@@ -251,6 +265,314 @@ namespace ApiBase.Service.Services.PriorityService
 
             return new ResponseEntity(StatusCodeConstants.OK, result, MessageConstants.MESSAGE_SUCCESS_200);
 
+        }
+
+
+        public async Task<ResponseEntity> addUserProject(Project_User project, string token = "")
+        {
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id",project.projectId).Result;
+           
+            if(pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if(pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("projectId", project.projectId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", project.userId));
+
+
+            IEnumerable<Project_User> lstProjectUser = _projectUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if (lstProjectUser.Count() > 0)
+            {
+                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "User already exists in the project!", MessageConstants.MESSAGE_ERROR_500);
+            }
+            Project_User model = new Project_User() ;
+            model.userId = project.userId;
+            model.projectId = project.projectId;
+            model.deleted = false;
+            model.alias = project.userId + "_" + project.projectId;
+            await _projectUserRepository.InsertAsync(model);
+            return new ResponseEntity(StatusCodeConstants.OK, "has added the user to the project !", MessageConstants.MESSAGE_SUCCESS_200);
+
+        }
+
+        public async Task<ResponseEntity> updateStatusTask(UpdateStatusVM statusTask, string token)
+        {
+            UserJira user = _userService.getUserByToken(token).Result;
+            var task = _taskRepository.GetSingleByConditionAsync("id", statusTask.taskId).Result;
+
+
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("projectId", task.projectId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
+
+            var projectUser = _projectUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if(projectUser.Count() > 0)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            task.statusId = statusTask.statusId;
+
+            await _taskRepository.UpdateAsync(task.taskId, task);
+
+            return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+        }
+
+        public async Task<ResponseEntity> updatePiority(UpdatePiority model,string token="")
+        {
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", model.taskId).Result;
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+
+            task.priorityId = model.priorityId;
+
+
+            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
+        }
+
+        public async Task<ResponseEntity> updateDescription(UpdateDescription model, string token)
+        {
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", model.taskId).Result;
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+
+            task.description = model.description;
+
+
+            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
+        }
+
+        public async Task<ResponseEntity> updateTimeTracking(TimeTrackingUpdate model, string token)
+        {
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", model.taskId).Result;
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+
+            task.timeTracking = model.timeTracking;
+            task.timeTrackingMax = model.timeTrackingMax;
+
+
+            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
+        }
+
+        public async Task<ResponseEntity> updateEstimate(updateEstimate model, string token)
+        {
+
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", model.taskId).Result;
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+
+            task.originalEstimate = model.originalEstimate;
+
+
+            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
+        }
+
+        public async Task<ResponseEntity> addTaskUser(TaskUser model, string token)
+        {
+
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", model.taskId).Result;
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("taskId", model.taskId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", model.userId));
+            var taskUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if(taskUser.Count() >0)
+            {
+                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "User is unthorization!", MessageConstants.ACCOUNT_EXITST_TASK);
+
+            }
+            Task_User taskUserInsert = new Task_User();
+            taskUserInsert.useId = model.taskId;
+            taskUserInsert.taskId = model.userId;
+            await _taskUserRepository.InsertAsync(taskUserInsert);
+            return new ResponseEntity(StatusCodeConstants.OK, "add user to task successfully!", MessageConstants.UPDATE_SUCCESS);
+        }
+
+        public async Task<ResponseEntity> removeUserFromTask(TaskUser model, string token)
+        {
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", model.taskId).Result;
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("taskId", model.taskId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", model.userId));
+            var taskUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            List<dynamic> lstId = new List<dynamic>();
+            foreach(var item in taskUser)
+            {
+                lstId.Add(item.id);
+            }
+
+            await _taskUserRepository.DeleteByIdAsync(lstId);
+
+            return new ResponseEntity(StatusCodeConstants.OK, "remove user from task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+        }
+
+        public async Task<ResponseEntity> removeUSerFromProject(Project_User project, string token)
+        {
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", project.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("projectId", project.projectId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", project.userId));
+
+
+            IEnumerable<Project_User> lstProjectUser = _projectUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            List<dynamic> lstId = new List<dynamic>();
+            foreach (var item in lstProjectUser)
+            {
+                lstId.Add(item.id);
+            }
+
+            await _projectUserRepository.DeleteByIdAsync(lstId);
+            return new ResponseEntity(StatusCodeConstants.OK, "remove user from project successfully !", MessageConstants.MESSAGE_SUCCESS_200);
         }
     }
 

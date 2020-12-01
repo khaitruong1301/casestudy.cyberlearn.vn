@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Net.Http.Headers;
+using ApiBase.Service.ViewModels.ProjectViewModel;
+using ApiBase.Service.ViewModels.Task;
 
 namespace ApiBase.Api.Controllers
 {
@@ -38,15 +40,15 @@ namespace ApiBase.Api.Controllers
 
             return await _projectService.createProject(model, accessToken);
         }
-        [Authorize]
 
+        [Authorize]
         [HttpGet("getProjectDetail")]
         public async Task<IActionResult> getProjectDetail(int id)
         {
             return await _projectService.getProjectById(id);
         }
-        [Authorize]
 
+        [Authorize]
         [HttpGet("getAllProject")]
         public async Task<IActionResult> getAllProject()
         {
@@ -62,8 +64,8 @@ namespace ApiBase.Api.Controllers
             return await _projectService.DeleteByIdAsync(lstId);
         }
 
-        [Authorize]
 
+        [Authorize]
         [HttpPut("updateProject")]
         public async Task<IActionResult> updateProject(int? projectId, ProjectUpdate projectUpdate)
         {
@@ -72,6 +74,89 @@ namespace ApiBase.Api.Controllers
             return await _projectService.updateProject(projectId,projectUpdate, accessToken);
         }
 
-      
+        [Authorize]
+        [HttpPost("assignUserProject")]
+        public async Task<IActionResult> assignUserProject([FromBody]Project_User project)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+
+            return await _projectService.addUserProject(project, accessToken);
+
+        }
+        [Authorize]
+        [HttpPost("assignUserTask")]
+        public async Task<IActionResult> assignUserTask([FromBody] TaskUser taskUser)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+
+            return await _projectService.addTaskUser(taskUser, accessToken);
+
+        }
+
+        [Authorize]
+        [HttpPost("removeUserFromTask")]
+        public async Task<IActionResult> removeUserFromTask([FromBody] TaskUser taskUser)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+
+            return await _projectService.removeUserFromTask(taskUser, accessToken);
+
+        }
+
+
+        [Authorize]
+        [HttpPost("assignUserTask")]
+        public async Task<IActionResult> removeUserFromProject([FromBody] Project_User project)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+
+            return await _projectService.removeUSerFromProject(project, accessToken);
+
+        }
+
+
+        [Authorize]
+        [HttpPut("updateStatus")]
+        public async Task<IActionResult> updateStatus([FromBody] UpdateStatusVM model)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+            return await _projectService.updateStatusTask(model, accessToken);
+        }
+
+
+        [Authorize]
+        [HttpPut("updatePiority")]
+        public async Task<IActionResult> updatePiority([FromBody] UpdatePiority model)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+            return await _projectService.updatePiority(model, accessToken);
+        }
+
+        [Authorize]
+        [HttpPut("updateDescription")]
+        public async Task<IActionResult> updateDescription(UpdateDescription model)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+            return await _projectService.updateDescription(model, accessToken);
+        }
+
+
+        [Authorize]
+        [HttpPut("updateTimeTracking")]
+        public async Task<IActionResult> updateTimeTracking(TimeTrackingUpdate model)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+            return await _projectService.updateTimeTracking(model, accessToken);
+        }
+
+        [Authorize]
+        [HttpPut("updateEstimate")]
+        public async Task<IActionResult> updateEstimate(updateEstimate model)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+            return await _projectService.updateEstimate(model, accessToken);
+        }
+
+
     }
 }

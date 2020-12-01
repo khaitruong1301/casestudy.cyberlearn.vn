@@ -25,14 +25,14 @@ namespace ApiBase.Service.ViewModels
             DateTime = DateTime.Now;
         }
 
-        public async Task ExecuteResultAsync(ActionContext context)
+        public async System.Threading.Tasks.Task ExecuteResultAsync(ActionContext context)
         {
             context.HttpContext.Response.StatusCode = StatusCode;
             await new ObjectResult(this).ExecuteResultAsync(context);
         }
 
         private string GetDefaultMessageForStatusCode(int statusCode)
-        {
+        {   
             switch (statusCode)
             {
                 case 400:

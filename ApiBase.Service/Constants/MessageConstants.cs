@@ -3,7 +3,8 @@
     public class MessageConstants
     {
         public static string MESSAGE_ERROR_400 = "Yêu cầu không hợp lệ!";
-        public static string MESSAGE_ERROR_401 = "Không đủ quyền truy cập!";
+        public static string MESSAGE_ERROR_401 = "Không có quyền truy cập!";
+        public static string MESSAGE_ERROR_403 = "Không đủ quyền truy cập!";
         public static string MESSAGE_ERROR_404 = "Không tìm thấy tài nguyên!";
         public static string MESSAGE_ERROR_500 = "Dữ liệu không hợp lệ!";
         public static string MESSAGE_SUCCESS_200 = "Xử lý thành công!";
@@ -22,6 +23,7 @@
         public static string EMAIL_EXITST = "Email đã được sử dụng!";
         public static string INFO_EXITST = "Email hoặc facebook đã được sử dụng!";
         public static string ACCOUNT_EXITST = "Tài khoản đã tồn tại!";
+        public static string ACCOUNT_EXITST_TASK = "User đã được thêm vào task!";
 
         public static string SIGNIN_WRONG = "Sai email hoặc mật khẩu!";
         public static string SIGNIN_SUCCESS = "Đăng nhập thành công!";

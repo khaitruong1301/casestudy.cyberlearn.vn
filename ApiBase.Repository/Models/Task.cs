@@ -13,10 +13,12 @@ namespace ApiBase.Repository.Models
         public string statusId { get; set; }
         public int originalEstimate { get; set; }
         public int timeTracking { get; set; }
+        public int timeTrackingMax { get; set; }
         public int projectId { get; set; }
         public int typeId { get; set; }
         public bool deleted { get; set; }
         public int reporterId { get; set; }
+        public int priorityId { get; set; }
     }
 
 }

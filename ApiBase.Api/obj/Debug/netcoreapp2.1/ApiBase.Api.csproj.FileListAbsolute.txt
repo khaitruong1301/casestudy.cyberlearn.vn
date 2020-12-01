@@ -94,6 +94,12 @@ D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase
 D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.dll
 D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.pdb
 D:\cybersoft\jira_clone_backend\api_base_initialize--api_base_initialize\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.genruntimeconfig.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.csprojAssemblyReference.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.AssemblyInfoInputs.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.AssemblyInfo.cs
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.csproj.CoreCompileInputs.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.RazorAssemblyInfo.cache
+D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.RazorAssemblyInfo.cs
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Debug\netcoreapp2.1\appsettings.Development.json
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Debug\netcoreapp2.1\appsettings.json
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Debug\netcoreapp2.1\Config\google-tranlation.json
@@ -107,12 +113,6 @@ D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Debug\netcoreapp2.1\ApiBase
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Debug\netcoreapp2.1\ApiBase.Service.dll
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Debug\netcoreapp2.1\ApiBase.Service.pdb
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Debug\netcoreapp2.1\ApiBase.Repository.pdb
-D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.csprojAssemblyReference.cache
-D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.AssemblyInfoInputs.cache
-D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.AssemblyInfo.cs
-D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.csproj.CoreCompileInputs.cache
-D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.RazorAssemblyInfo.cache
-D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.RazorAssemblyInfo.cs
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.RazorTargetAssemblyInfo.cache
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.csproj.CopyComplete
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\obj\Debug\netcoreapp2.1\ApiBase.Api.dll

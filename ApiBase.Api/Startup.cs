@@ -31,6 +31,7 @@ using ApiBase.Api.Filter;
 using ApiBase.Service.Services.UserService;
 using ApiBase.Service.Services.CommentService;
 using ApiBase.Service.Services.PriorityService;
+using ApiBase.Service.Services.Project_UserService;
 
 namespace ApiBase.Api
 {
@@ -57,9 +58,16 @@ namespace ApiBase.Api
             services.AddSingleton<ICommentRepository, CommentRepository>();
             services.AddSingleton<ICommentService, CommentService>();
 
+
+            //===================== Project_User ==============
+
+            services.AddSingleton<IProject_UserReponsitory, Project_UserReponsitory>();
+            services.AddSingleton<IProject_UserService, Project_UserService>();
+
             //===================== useJira =====================
-            services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IUserJiraRepository, UserJiraRepository>();
+
+            services.AddSingleton<IUserService, UserService>();
 
             //===================== CommentCategory =====================
             services.AddSingleton<IProjectCategoryRepository, ProjectCategoryRepository>();
