@@ -167,7 +167,7 @@ namespace ApiBase.Api.Controllers
         }
 
         [Authorize]
-        [HttpPost("removeTask")]
+        [HttpDelete("removeTask")]
         public async Task<IActionResult> removeTask(int taskId)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
