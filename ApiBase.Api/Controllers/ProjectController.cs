@@ -158,5 +158,12 @@ namespace ApiBase.Api.Controllers
         }
 
 
+        [Authorize]
+        [HttpPost] 
+        public async Task<IActionResult> createTask (taskInsert model)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+            return await _projectService.createTask(model, accessToken);
+        }
     }
 }

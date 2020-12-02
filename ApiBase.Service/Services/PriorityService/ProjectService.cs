@@ -36,6 +36,8 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> addTaskUser(TaskUser model,string token);
         Task<ResponseEntity> removeUserFromTask(TaskUser model,string token);
         Task<ResponseEntity> removeUSerFromProject(Project_User model,string token);
+        Task<ResponseEntity> createTask(taskInsert model,string token);
+        
 
 
     }
@@ -573,6 +575,43 @@ namespace ApiBase.Service.Services.PriorityService
 
             await _projectUserRepository.DeleteByIdAsync(lstId);
             return new ResponseEntity(StatusCodeConstants.OK, "remove user from project successfully !", MessageConstants.MESSAGE_SUCCESS_200);
+        }
+
+        public async Task<ResponseEntity> createTask(taskInsert model, string token)
+        {
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", model.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+
+            Repository.Models.Task task = new Repository.Models.Task();
+            task.taskName = model.taskName;
+            task.alias = FuncUtilities.BestLower(model.taskName);
+            task.description = model.description;
+            task.statusId = model.statusId;
+            task.originalEstimate = model.originalEstimate;
+            task.timeTracking = model.timeTracking;
+            task.timeTrackingMax = model.timeTrackingMax;
+            task.projectId = model.projectId;
+            task.typeId = model.typeId;
+            task.reporterId = model.reporterId;
+            task.priorityId = model.priorityId;
+            task.deleted = false;
+
+            await _taskRepository.InsertAsync(task);
+
+
+                return new ResponseEntity(StatusCodeConstants.OK, "create task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+
         }
     }
 
