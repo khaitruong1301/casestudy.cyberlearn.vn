@@ -70,4 +70,6 @@ namespace ApiBase.Service.ViewModels.Task
         public int timeTracking { get; set; }
 
     }
+
+    
 }

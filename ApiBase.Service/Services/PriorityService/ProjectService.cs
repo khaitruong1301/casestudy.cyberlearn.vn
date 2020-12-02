@@ -37,7 +37,8 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> removeUserFromTask(TaskUser model,string token);
         Task<ResponseEntity> removeUSerFromProject(Project_User model,string token);
         Task<ResponseEntity> createTask(taskInsert model,string token);
-        
+        Task<ResponseEntity> removeTask(int taskId,string token);
+
 
 
     }
@@ -611,6 +612,57 @@ namespace ApiBase.Service.Services.PriorityService
 
 
                 return new ResponseEntity(StatusCodeConstants.OK, "create task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+
+        }
+
+        public async Task<ResponseEntity> removeTask(int taskId, string token)
+        {
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", taskId).Result;
+
+            if (task == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+            dynamic taskIDD = taskId;
+            IEnumerable<Task_User> taskUser = await _taskUserRepository.GetMultiByConditionAsync("taskId", taskIDD).Result;
+            List<dynamic> lstIdTaskUser = new List<dynamic>();
+            //Xóa task user
+            foreach(var taskU in taskUser)
+            {
+                lstIdTaskUser.Add(taskU.id);
+            }
+            await _taskUserRepository.DeleteByIdAsync(lstIdTaskUser);
+            //Xóa task comment
+            dynamic taskCommnetId = taskId;
+            IEnumerable<Comment> comment = await _userComment.GetMultiByConditionAsync("taskId", taskCommnetId).Result;
+            List<dynamic> lstIdComment = new List<dynamic>();
+            foreach(var item in comment)
+            {
+                lstIdComment.Add(item.id);
+            }
+
+            await _userComment.DeleteByIdAsync(lstIdComment);
+            //Xóa task
+            List<dynamic> lst = new List<dynamic>();
+            lst.Add(task.taskId);
+
+            await _taskRepository.DeleteByIdAsync(lst);
+            return new ResponseEntity(StatusCodeConstants.OK, "Remove task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
 
         }
     }
