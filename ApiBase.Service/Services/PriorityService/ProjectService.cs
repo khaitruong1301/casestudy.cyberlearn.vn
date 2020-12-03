@@ -238,11 +238,25 @@ namespace ApiBase.Service.Services.PriorityService
                     creator.id = n.creator;
                     creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
                 }
-                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = n.description, categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator  };
+                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = n.description, categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator , members = getListMember(n.id) };
                 listResult.Add(result);
             }
 
             return new ResponseEntity(StatusCodeConstants.OK, listResult, MessageConstants.MESSAGE_SUCCESS_200);
+        }
+        public List<Member> getListMember (int projectId)
+        {
+            List<Member> lst = new List<Member>();
+            var userProject = _projectUserRepository.GetMultiByConditionAsync("projectId", projectId).Result;
+            foreach(var project in userProject)
+            {
+                Member mem = new Member();
+                mem.userId = project.userId;
+                dynamic id = mem.userId;
+                mem.name = _userJira.GetSingleByIdAsync(id).Result.name;
+                lst.Add(mem);
+            }
+            return lst;
         }
 
         public async Task<ResponseEntity> updateProject(int? idProject=0, ProjectUpdate projectUpdate=null,string token="")
@@ -611,7 +625,7 @@ namespace ApiBase.Service.Services.PriorityService
             await _taskRepository.InsertAsync(task);
 
 
-                return new ResponseEntity(StatusCodeConstants.OK, "create task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+            return new ResponseEntity(StatusCodeConstants.OK, "create task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
 
         }
 
