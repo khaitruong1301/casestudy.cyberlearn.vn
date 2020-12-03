@@ -195,7 +195,8 @@ namespace ApiBase.Api
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false, // Issuer không bắt buộc
                     ValidateAudience = false, // Audience không bắt buộc
-                    ValidateLifetime = true // Thời gian hết hạn (expires) là bắt buộc
+                    ValidateLifetime = true, // Thời gian hết hạn (expires) là bắt buộc
+                    ClockSkew = TimeSpan.FromDays(20)
                 };
                 x.IncludeErrorDetails = true;
                 x.Events = new JwtBearerEvents()
