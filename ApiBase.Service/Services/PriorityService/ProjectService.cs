@@ -25,7 +25,7 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> createProject(ProjectInsert model,string token="");
         Task<ResponseEntity> getProjectById(int? idProject);
         Task<ResponseEntity> updateProject(int? idProject,ProjectUpdate projectUpdate,string token);
-        Task<ResponseEntity> addUserProject(Project_User project,string token="");
+        Task<ResponseEntity> addUserProject(UserProject project,string token="");
 
         Task<ResponseEntity> getAllProject();
         Task<ResponseEntity> updateStatusTask(UpdateStatusVM statusTask,string token );
@@ -285,7 +285,7 @@ namespace ApiBase.Service.Services.PriorityService
         }
 
 
-        public async Task<ResponseEntity> addUserProject(Project_User project, string token = "")
+        public async Task<ResponseEntity> addUserProject(UserProject project, string token = "")
         {
             UserJira user = _userService.getUserByToken(token).Result;
             Project pro = _projectRepository.GetSingleByConditionAsync("id",project.projectId).Result;

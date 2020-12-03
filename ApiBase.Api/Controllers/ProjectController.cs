@@ -76,7 +76,7 @@ namespace ApiBase.Api.Controllers
 
         [Authorize]
         [HttpPost("assignUserProject")]
-        public async Task<IActionResult> assignUserProject([FromBody]Project_User project)
+        public async Task<IActionResult> assignUserProject([FromBody] UserProject project)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
 

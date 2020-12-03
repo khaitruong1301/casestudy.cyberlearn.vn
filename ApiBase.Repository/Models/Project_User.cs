@@ -15,6 +15,18 @@ namespace ApiBase.Repository.Models
         public int userId { get; set; } 
         public bool deleted { get; set; }
     }
+
+    public class UserProject
+    {
+    
+
+        public int projectId { get; set; }
+        public int userId { get; set; }
+    }
+
+
+
+
     public class TaskUser
     {
         public int taskId { get; set; }
