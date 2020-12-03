@@ -10,7 +10,5 @@ namespace ApiBase.Repository.Models
         public int useId { get; set; }
         public int taskId { get; set; }
         public bool deleted { get; set; }
-
-
     }
 }
