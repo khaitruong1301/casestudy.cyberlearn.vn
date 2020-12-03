@@ -23,7 +23,8 @@ namespace ApiBase.Service.ViewModels.ProjectViewModel
     public class Member
     {
         public int userId { get; set; }
-        public int name { get; set; }
+        public string name { get; set; }
+        public string avatar { get; set; }
     }
 
     public class Creator

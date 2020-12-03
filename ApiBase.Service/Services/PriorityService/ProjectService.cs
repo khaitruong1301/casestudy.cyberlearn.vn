@@ -238,8 +238,11 @@ namespace ApiBase.Service.Services.PriorityService
                     creator.id = n.creator;
                     creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
                 }
+
                 var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = n.description, categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator , members = getListMember(n.id) };
                 listResult.Add(result);
+
+
             }
 
             return new ResponseEntity(StatusCodeConstants.OK, listResult, MessageConstants.MESSAGE_SUCCESS_200);
@@ -253,7 +256,10 @@ namespace ApiBase.Service.Services.PriorityService
                 Member mem = new Member();
                 mem.userId = project.userId;
                 dynamic id = mem.userId;
-                mem.name = _userJira.GetSingleByIdAsync(id).Result.name;
+                UserJira user = _userJira.GetSingleByIdAsync(id).Result;
+                mem.userId = user.id;
+                mem.name = user.name;
+                mem.avatar = user.avatar;
                 lst.Add(mem);
             }
             return lst;
