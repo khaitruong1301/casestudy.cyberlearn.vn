@@ -32,10 +32,17 @@ namespace ApiBase.Repository.Models
         public ProjectCategoryDetail projectCategory { get; set; }
         public string alias { get; set; }
         public List<StatusTask> lstTask = new List<StatusTask>();
+        public List<Member> members = new List<Member>();
         public CreatorModel creator = new CreatorModel();
 
     }
 
+    public class Member
+    {
+        public int userId { get; set; }
+        public string name { get; set; }
+        public string avatar { get; set; }
+    }
     public class CreatorModel
     {
         public int id { get; set; }

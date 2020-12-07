@@ -127,8 +127,20 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
 
-            ProjectCategory projectCategory = await _projectCategoryRepository.GetSingleByConditionAsync("id", pro.categoryId);
 
+           var lstUser = _projectUserRepository.GetMultiByConditionAsync("projectId", idProject).Result;
+            List<Repository.Models.Member> members = new List<Repository.Models.Member>();
+            foreach (var item in lstUser)
+            {
+                var user = _userJira.GetSingleByConditionAsync("id", item.userId).Result;
+                Repository.Models.Member mem = new Repository.Models.Member();
+                mem.userId = user.id;
+                mem.name = user.name;
+                mem.avatar = user.avatar;
+                members.Add(mem);
+            }
+
+            ProjectCategory projectCategory = await _projectCategoryRepository.GetSingleByConditionAsync("id", pro.categoryId);
 
             ProjectDetail projectDetail = new ProjectDetail();
 
@@ -138,6 +150,7 @@ namespace ApiBase.Service.Services.PriorityService
             projectDetail.description = pro.description;
             projectDetail.id = pro.id;
             projectDetail.projectName = pro.projectName;
+            projectDetail.members = members;
             CreatorModel creator = new CreatorModel();
             if(pro.id != null)
             {
@@ -247,13 +260,13 @@ namespace ApiBase.Service.Services.PriorityService
 
             return new ResponseEntity(StatusCodeConstants.OK, listResult, MessageConstants.MESSAGE_SUCCESS_200);
         }
-        public List<Member> getListMember (int projectId)
+        public List<ViewModels.ProjectViewModel.Member> getListMember (int projectId)
         {
-            List<Member> lst = new List<Member>();
+            List<ViewModels.ProjectViewModel.Member> lst = new List<ViewModels.ProjectViewModel.Member>();
             var userProject = _projectUserRepository.GetMultiByConditionAsync("projectId", projectId).Result;
             foreach(var project in userProject)
             {
-                Member mem = new Member();
+                ViewModels.ProjectViewModel.Member mem = new ViewModels.ProjectViewModel.Member();
                 mem.userId = project.userId;
                 dynamic id = mem.userId;
                 UserJira user = _userJira.GetSingleByIdAsync(id).Result;
