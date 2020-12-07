@@ -35,6 +35,14 @@ namespace ApiBase.Api.Controllers
             return await _userService.RegisterUser(model);
         }
 
+        [HttpPost("getUser")]
+        [Authorize]
+        public async Task<IActionResult> getUser(string keyword = "") {
+
+
+
+            return await _userService.getUser(keyword);
+        }
 
         [HttpPost("signin")]
         public async Task<IActionResult> SignIn([FromBody] UserJiraLogin model)

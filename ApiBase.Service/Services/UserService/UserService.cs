@@ -18,6 +18,7 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ApiBase.Service.Services.UserService
 {
@@ -31,6 +32,7 @@ namespace ApiBase.Service.Services.UserService
 
         Task<ResponseEntity> RegisterUser(UserJiraModel modelVm);
         Task<ResponseEntity> SignIn(UserJiraLogin modelVm);
+        Task<ResponseEntity> getUser(string keyword="");
 
 
 
@@ -413,6 +415,46 @@ namespace ApiBase.Service.Services.UserService
             usModel.phoneNumber = entity.phoneNumber;
             usModel.accessToken = await GenerateTokenJira(entity);
             return new ResponseEntity(StatusCodeConstants.OK, usModel, MessageConstants.MESSAGE_SUCCESS_200);
+        }
+
+        public async Task<ResponseEntity> getUser(string keyword = "")
+        {
+            IEnumerable<UserJira> entity =  _useJiraRepository.GetAllAsync().Result;
+            List<Member> members = new List<Member>();
+           
+            if (entity.Count() != 0)
+            {
+                keyword = FuncUtilities.BestLower(keyword);
+                List<UserJira> lstTimTheoTen = entity.Where(n => n.alias.Contains(keyword)).ToList();
+
+                List<UserJira> lstTimTheoSdt = entity.Where(n => n.phoneNumber.Contains(keyword)).ToList();
+
+                List<UserJira> lstTimTheoEmail = entity.Where(n => n.email.Contains(keyword)).ToList();
+
+                List<UserJira> lstTimTheoMa = entity.Where(n => n.id.ToString().Contains(keyword)).ToList();
+
+                IEnumerable<UserJira> result = new List<UserJira>();
+                result = result.Union(lstTimTheoTen);
+                result= result.Union(lstTimTheoSdt);
+                result = result.Union(lstTimTheoEmail);
+                result = result.Union(lstTimTheoMa);
+
+
+
+                foreach (UserJira item in result)
+                {
+                    Member mem = new Member();
+
+                    mem.userId = item.id;
+                    mem.name = item.name;
+                    mem.avatar = item.avatar;
+                    members.Add(mem);
+                }
+                return new ResponseEntity(StatusCodeConstants.OK, members, MessageConstants.MESSAGE_SUCCESS_200);
+
+            }
+            return new ResponseEntity(StatusCodeConstants.OK, members, MessageConstants.MESSAGE_SUCCESS_200);
+
         }
     }
 }
