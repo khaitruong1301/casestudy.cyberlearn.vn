@@ -35,7 +35,7 @@ namespace ApiBase.Api.Controllers
             return await _userService.RegisterUser(model);
         }
 
-        [HttpPost("getUser")]
+        [HttpGet("getUser")]
         [Authorize]
         public async Task<IActionResult> getUser(string keyword = "") {
 
