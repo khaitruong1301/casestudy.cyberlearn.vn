@@ -106,7 +106,7 @@ namespace ApiBase.Api.Controllers
 
         [Authorize]
         [HttpPost("removeUserFromProject")]
-        public async Task<IActionResult> removeUserFromProject([FromBody] Project_User project)
+        public async Task<IActionResult> removeUserFromProject([FromBody] UserProject project)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
 

@@ -35,7 +35,7 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> updateEstimate(updateEstimate model,string token);
         Task<ResponseEntity> addTaskUser(TaskUser model,string token);
         Task<ResponseEntity> removeUserFromTask(TaskUser model,string token);
-        Task<ResponseEntity> removeUSerFromProject(Project_User model,string token);
+        Task<ResponseEntity> removeUSerFromProject(UserProject model,string token);
         Task<ResponseEntity> createTask(taskInsert model,string token);
         Task<ResponseEntity> removeTask(int taskId,string token);
 
@@ -580,7 +580,7 @@ namespace ApiBase.Service.Services.PriorityService
             return new ResponseEntity(StatusCodeConstants.OK, "remove user from task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
         }
 
-        public async Task<ResponseEntity> removeUSerFromProject(Project_User project, string token)
+        public async Task<ResponseEntity> removeUSerFromProject(UserProject project, string token)
         {
             UserJira user = _userService.getUserByToken(token).Result;
             Project pro = _projectRepository.GetSingleByConditionAsync("id", project.projectId).Result;
