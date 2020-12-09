@@ -88,7 +88,7 @@ namespace ApiBase.Service.Services.PriorityService
                 return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Project name already exists", MessageConstants.MESSAGE_ERROR_500);
 
             }
-            var projectCate = _projectCategoryRepository.GetSingleByConditionAsync("categoryId", model.categoryId).Result;
+            var projectCate = _projectCategoryRepository.GetSingleByConditionAsync("id", model.categoryId).Result;
             if (projectCate == null)
             {
                 model.categoryId = 1;
@@ -101,8 +101,8 @@ namespace ApiBase.Service.Services.PriorityService
             newProject.projectName = model.projectName;
             if (token != "")
             {
-                var user = _userJira.GetSingleByConditionAsync("id", _userService.getUserByToken(token).Id);
-                newProject.creator = user.Id;
+                var user = _userJira.GetSingleByConditionAsync("id", _userService.getUserByToken(token).Result.id).Result;
+                newProject.creator = user.id;
             }
             else
             {
