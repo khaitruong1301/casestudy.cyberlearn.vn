@@ -615,7 +615,6 @@ namespace ApiBase.Service.Services.PriorityService
         {
             UserJira user = _userService.getUserByToken(token).Result;
             Project pro = _projectRepository.GetSingleByConditionAsync("id", model.projectId).Result;
-
             if (pro == null)
             {
                 return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
@@ -627,6 +626,16 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
 
+            string alias = FuncUtilities.BestLower(model.taskName);
+            //Kiểm tra task tồn tại chưa
+            var taskValid = _taskRepository.GetSingleByConditionAsync("alias", alias);
+            if(taskValid != null)
+            {
+                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "task already exists!", MessageConstants.MESSAGE_ERROR_500);
+
+            }
+
+
             Repository.Models.Task task = new Repository.Models.Task();
             task.taskName = model.taskName;
             task.alias = FuncUtilities.BestLower(model.taskName);
@@ -637,11 +646,21 @@ namespace ApiBase.Service.Services.PriorityService
             task.timeTrackingMax = model.timeTrackingMax;
             task.projectId = model.projectId;
             task.typeId = model.typeId;
-            task.reporterId = model.reporterId;
+            task.reporterId = user.id;
             task.priorityId = model.priorityId;
             task.deleted = false;
-
             await _taskRepository.InsertAsync(task);
+
+            foreach (var item in model.listUserAsign)
+            {
+                Task_User tu = new Task_User();
+                tu.taskId = task.taskId;
+                tu.deleted = false;
+                tu.taskId = item;
+                await _taskUserRepository.InsertAsync(tu);
+
+            }
+
 
 
             return new ResponseEntity(StatusCodeConstants.OK, "create task successfully!", MessageConstants.MESSAGE_SUCCESS_200);

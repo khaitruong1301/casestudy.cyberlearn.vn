@@ -1,7 +1,6 @@
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\appsettings.Development.json
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\appsettings.json
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\Config\google-tranlation.json
-D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\Properties\launchSettings.json
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\ApiBase.Api.deps.json
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\ApiBase.Api.runtimeconfig.json
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\ApiBase.Api.runtimeconfig.dev.json

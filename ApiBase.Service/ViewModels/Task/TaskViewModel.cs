@@ -11,7 +11,7 @@ namespace ApiBase.Service.ViewModels.Task
     public class UpdateStatusVM
     {
         public int taskId { get; set; }
-        public string  statusId { get; set; }
+        public string statusId { get; set; }
     }
 
     public class UpdatePiority
@@ -68,8 +68,9 @@ namespace ApiBase.Service.ViewModels.Task
         public int reporterId { get; set; }
         public int priorityId { get; set; }
         public int timeTracking { get; set; }
+        public List<int> listUserAsign = new List<int>();
 
     }
 
-    
+  
 }
