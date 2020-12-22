@@ -37,6 +37,7 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> removeUserFromTask(TaskUser model,string token);
         Task<ResponseEntity> removeUSerFromProject(UserProject model,string token);
         Task<ResponseEntity> createTask(taskInsert model,string token);
+        Task<ResponseEntity> updateTask(TaskEdit model,string token);
         Task<ResponseEntity> removeTask(int taskId,string token);
 
 
@@ -113,6 +114,7 @@ namespace ApiBase.Service.Services.PriorityService
 
 
         }
+
 
         public async Task<ResponseEntity> getProjectById(int? idProject)
         {
@@ -714,6 +716,64 @@ namespace ApiBase.Service.Services.PriorityService
             await _taskRepository.DeleteByIdAsync(lst);
             return new ResponseEntity(StatusCodeConstants.OK, "Remove task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
 
+        }
+
+        public async Task<ResponseEntity> updateTask(TaskEdit model, string token)
+        {
+            UserJira user = _userService.getUserByToken(token).Result;
+            Project pro = _projectRepository.GetSingleByConditionAsync("id", model.projectId).Result;
+            Repository.Models.Task taskModel = _taskRepository.GetSingleByConditionAsync("taskId", model.taskId).Result;
+            if(taskModel == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Task is not found!", MessageConstants.MESSAGE_ERROR_404);
+            }
+            if (pro == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            if (pro.creator != user.id)
+            {
+                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+
+            }
+
+            string alias = FuncUtilities.BestLower(model.taskName);
+            //Kiểm tra task tồn tại chưa
+            var taskValid = _taskRepository.GetSingleByConditionAsync("alias", alias);
+            if (taskValid != null)
+            {
+                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "task already exists!", MessageConstants.MESSAGE_ERROR_500);
+
+            }
+
+
+            taskModel.taskName = model.taskName;
+            taskModel.alias = FuncUtilities.BestLower(model.taskName);
+            taskModel.description = model.description;
+            taskModel.statusId = model.statusId;
+            taskModel.originalEstimate = model.originalEstimate;
+            taskModel.timeTrackingSpent = model.timeTrackingSpent;
+            taskModel.timeTrackingRemaining = model.timeTrackingRemaining;
+            taskModel.projectId = model.projectId;
+            taskModel.typeId = model.typeId;
+            taskModel.reporterId = user.id;
+            taskModel.priorityId = model.priorityId;
+            taskModel.deleted = false;
+            await _taskRepository.UpdateAsync(taskModel.taskId,taskModel);
+
+            //foreach (var item in model.listUserAsign)
+            //{
+            //    Task_User tu = new Task_User();
+            //    tu.taskId = taskModel.taskId;
+            //    tu.deleted = false;
+            //    tu.taskId = item;
+            //    await _taskUserRepository.InsertAsync(tu);
+            //}
+
+
+
+            return new ResponseEntity(StatusCodeConstants.OK, "update task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
         }
     }
 

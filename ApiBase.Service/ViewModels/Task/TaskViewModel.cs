@@ -71,6 +71,8 @@ namespace ApiBase.Service.ViewModels.Task
     public class TaskEdit
     {
         public string taskId { get; set; }
+        public string taskName { get; set; }
+
         public string description { get; set; }
         public string statusId { get; set; }
         public int originalEstimate { get; set; }
