@@ -76,8 +76,6 @@ namespace ApiBase.Service.Services.PriorityService
         public async Task<ResponseEntity> createProject(ProjectInsert model, string token = "")
         {
 
-
-
             string alias = FuncUtilities.BestLower(model.projectName.Trim());
 
             var project = await _projectRepository.GetSingleByConditionAsync("alias", alias);

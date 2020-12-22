@@ -79,5 +79,13 @@ namespace ApiBase.Api.Controllers
 
             return  new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Okay ! đã check token được phép truy cập !", MessageConstants.SIGNIN_SUCCESS);
         }
+
+        //[HttpPost("searchUserProject")]
+        //public async Task<IActionResult> searchUserProject (int idProject=0)
+        //{
+
+
+        //    return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Okay ! đã check token được phép truy cập !", MessageConstants.SIGNIN_SUCCESS);
+        //}
     }
 }

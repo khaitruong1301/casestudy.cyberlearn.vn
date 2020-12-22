@@ -32,6 +32,7 @@ using ApiBase.Service.Services.UserService;
 using ApiBase.Service.Services.CommentService;
 using ApiBase.Service.Services.PriorityService;
 using ApiBase.Service.Services.Project_UserService;
+using ApiBase.Service.Services.TaskTypeService;
 
 namespace ApiBase.Api
 {
@@ -57,7 +58,9 @@ namespace ApiBase.Api
             //===================== ProjectCategory =====================
             services.AddSingleton<ICommentRepository, CommentRepository>();
             services.AddSingleton<ICommentService, CommentService>();
-
+            //==============TaskType==========================
+            services.AddSingleton<ITaskTypeRepository, TaskTypeRepository>();
+            services.AddSingleton<ITaskTypeService, TaskTypeService>();
 
             //===================== Project_User ==============
 
@@ -92,7 +95,7 @@ namespace ApiBase.Api
             //===================== Task_User ================
             services.AddSingleton<ITask_UserRepository, Task_UserRepository>();
             //========================== Task ==================
-            services.AddSingleton<ITaskTypeRepository, TaskTypeRepository>();
+        
 
 
 
