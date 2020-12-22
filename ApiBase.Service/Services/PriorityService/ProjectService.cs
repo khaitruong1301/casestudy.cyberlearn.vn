@@ -170,7 +170,7 @@ namespace ApiBase.Service.Services.PriorityService
             {
                 var statusTask = new StatusTask { statusId = status.statusId, statusName = status.statusName, alias = status.alias };
 
-                var task = lstTask.Where(n =>  n.projectId == projectDetail.id && n.statusId == status.statusId).Select(n=> new TaskDetail {taskId= n.taskId,taskName=n.taskName,alias=n.alias,description=n.description,statusId=n.statusId,priorityTask = getTaskPriority(n.projectId,lstPriority),originalEstimate = n.originalEstimate,timeTracking = n.timeTracking,assigness=getListUserAsign(n.taskId).ToList(),taskTypeDetail = getTaskType(n.typeId),lstComment= getListComment(n.taskId).ToList()});
+                var task = lstTask.Where(n =>  n.projectId == projectDetail.id && n.statusId == status.statusId).Select(n=> new TaskDetail {taskId= n.taskId,taskName=n.taskName,alias=n.alias,description=n.description,statusId=n.statusId,priorityTask = getTaskPriority(n.projectId,lstPriority),originalEstimate = n.originalEstimate,timeTrackingSpent = n.timeTrackingSpent,timeTrackingRemaining=n.timeTrackingRemaining,assigness=getListUserAsign(n.taskId).ToList(),taskTypeDetail = getTaskType(n.typeId),lstComment= getListComment(n.taskId).ToList()});
                 
                 statusTask.lstTaskDeTail.AddRange(task.ToList());
 
@@ -457,8 +457,8 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
 
-            task.timeTracking = model.timeTracking;
-            task.timeTrackingMax = model.timeTrackingMax;
+            task.timeTrackingSpent = model.timeTrackingSpent;
+            task.timeTrackingRemaining = model.timeTrackingRemaining;
 
 
             await _taskRepository.UpdateAsync(model.taskId, task);
@@ -640,8 +640,8 @@ namespace ApiBase.Service.Services.PriorityService
             task.description = model.description;
             task.statusId = model.statusId;
             task.originalEstimate = model.originalEstimate;
-            task.timeTracking = model.timeTracking;
-            task.timeTrackingMax = model.timeTrackingMax;
+            task.timeTrackingSpent = model.timeTrackingSpent;
+            task.timeTrackingRemaining = model.timeTrackingRemaining;
             task.projectId = model.projectId;
             task.typeId = model.typeId;
             task.reporterId = user.id;

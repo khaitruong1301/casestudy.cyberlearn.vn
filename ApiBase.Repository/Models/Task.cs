@@ -12,8 +12,8 @@ namespace ApiBase.Repository.Models
         public string description { get; set; }
         public string statusId { get; set; }
         public int originalEstimate { get; set; }
-        public int timeTracking { get; set; }
-        public int timeTrackingMax { get; set; }
+        public int timeTrackingSpent { get; set; }
+        public int timeTrackingRemaining { get; set; }
         public int projectId { get; set; }
         public int typeId { get; set; }
         public bool deleted { get; set; }
