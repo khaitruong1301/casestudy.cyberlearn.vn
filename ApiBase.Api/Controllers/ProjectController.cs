@@ -173,7 +173,7 @@ namespace ApiBase.Api.Controllers
             return await _projectService.updateTask(model, accessToken);
         }
         [Authorize]
-        [HttpDelete("removeTask")]
+        [HttpDelete("updateTask")]
         public async Task<IActionResult> removeTask(int taskId)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
