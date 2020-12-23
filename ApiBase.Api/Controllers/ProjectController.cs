@@ -166,15 +166,15 @@ namespace ApiBase.Api.Controllers
             return await _projectService.createTask(model, accessToken);
         }
         [Authorize]
-        [HttpPost("createTask")]
+        [HttpPost("updateTask")]
         public async Task<IActionResult> updateTask(TaskEdit model)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
             return await _projectService.updateTask(model, accessToken);
         }
         [Authorize]
-        [HttpDelete("updateTask")]
-        public async Task<IActionResult> updateTask(int taskId)
+        [HttpDelete("removeTask")]
+        public async Task<IActionResult> removeTask(int taskId)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
             return await _projectService.removeTask(taskId, accessToken);
