@@ -628,7 +628,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             string alias = FuncUtilities.BestLower(model.taskName);
             //Kiểm tra task tồn tại chưa
-            var taskValid = _taskRepository.GetSingleByConditionAsync("alias", alias);
+            var taskValid = _taskRepository.GetSingleByConditionAsync("alias", alias).Result;
             if(taskValid != null)
             {
                 return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "task already exists!", MessageConstants.MESSAGE_ERROR_500);
