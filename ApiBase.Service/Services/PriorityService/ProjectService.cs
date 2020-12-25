@@ -54,10 +54,11 @@ namespace ApiBase.Service.Services.PriorityService
         IUserJiraRepository _userJira; 
         IUserService _userService;
         IProject_UserReponsitory _projectUserRepository;
+        ITaskTypeRepository _taskTyperepository;
 
         ICommentRepository _userComment;
 
-        public ProjectService(IProjectRepository proRe, IProjectCategoryRepository proCa, IStatusRepository status,ITaskRepository taskRe,IPriorityRepository pri,ITask_UserRepository taskUSer,IUserJiraRepository us,ICommentRepository cmt, IUserService usService, IProject_UserReponsitory project_userService,
+        public ProjectService(IProjectRepository proRe, IProjectCategoryRepository proCa, IStatusRepository status,ITaskRepository taskRe,IPriorityRepository pri,ITask_UserRepository taskUSer,IUserJiraRepository us,ICommentRepository cmt, IUserService usService, IProject_UserReponsitory project_userService, ITaskTypeRepository taskTyperepository,
             IMapper mapper)
             : base(proRe, mapper)
         {
@@ -71,6 +72,7 @@ namespace ApiBase.Service.Services.PriorityService
             _userComment = cmt;
             _userService = usService;
             _projectUserRepository = project_userService;
+            _taskTyperepository = taskTyperepository;
 
         }
 
@@ -172,9 +174,9 @@ namespace ApiBase.Service.Services.PriorityService
             {
                 var statusTask = new StatusTask { statusId = status.statusId, statusName = status.statusName, alias = status.alias };
 
-                var task = lstTask.Where(n =>  n.projectId == projectDetail.id && n.statusId == status.statusId).Select(n=> new TaskDetail {taskId= n.taskId,taskName=n.taskName,alias=n.alias,description=n.description,statusId=n.statusId,priorityTask = getTaskPriority(n.projectId,lstPriority),originalEstimate = n.originalEstimate,timeTrackingSpent = n.timeTrackingSpent,timeTrackingRemaining=n.timeTrackingRemaining,assigness=getListUserAsign(n.taskId).ToList(),taskTypeDetail = getTaskType(n.typeId),lstComment= getListComment(n.taskId).ToList()});
+                List<TaskDetail> task = lstTask.Where(n =>  n.projectId == projectDetail.id && n.statusId == status.statusId).Select(n=> new TaskDetail {taskId= n.taskId,taskName=n.taskName,alias=n.alias,description=n.description,statusId=n.statusId,priorityTask = getTaskPriority(n.priorityId,lstPriority),originalEstimate = n.originalEstimate,timeTrackingSpent = n.timeTrackingSpent,timeTrackingRemaining=n.timeTrackingRemaining,assigness=getListUserAsign(n.taskId).ToList(),taskTypeDetail = getTaskType(n.typeId),lstComment= getListComment(n.taskId).ToList()}).ToList();
                 
-                statusTask.lstTaskDeTail.AddRange(task.ToList());
+                statusTask.lstTaskDeTail.AddRange(task);   
 
                 projectDetail.lstTask.Add(statusTask);
             }
@@ -203,13 +205,13 @@ namespace ApiBase.Service.Services.PriorityService
 
 
 
-        public  TaskTypeDetail getTaskType (int taskId)
+        public  TaskTypeDetail getTaskType (int id)
         {
-            var result =  _taskRepository.GetSingleByConditionAsync("taskId", taskId).Result;
+            var result =  _taskTyperepository.GetSingleByConditionAsync("id", id).Result;
 
             TaskTypeDetail res = new TaskTypeDetail();
-            res.id = result.taskId;
-            res.taskType = result.taskName;
+            res.id = result.id;
+            res.taskType = result.taskType;
             return res;
         } 
 
@@ -218,7 +220,7 @@ namespace ApiBase.Service.Services.PriorityService
             var userTask =  _taskUserRepository.GetMultiByConditionAsync("taskId", taskId);
 
             IEnumerable<userAssign> uAssigns = userTask.Result.Select(n => { 
-                var user = getUserAsync(n.id);
+                var user = getUserAsync(n.useId);
                 return new userAssign() { id = n.id, name = user.name, alias = user.alias, avatar = user.avatar };
             });
 
