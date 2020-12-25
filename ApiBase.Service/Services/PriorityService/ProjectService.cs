@@ -649,6 +649,7 @@ namespace ApiBase.Service.Services.PriorityService
             task.reporterId = user.id;
             task.priorityId = model.priorityId;
             task.deleted = false;
+            task.reporterId = user.id;
             await _taskRepository.InsertAsync(task);
 
             foreach (var item in model.listUserAsign)
