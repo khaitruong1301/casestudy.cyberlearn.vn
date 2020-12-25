@@ -33,6 +33,7 @@ using ApiBase.Service.Services.CommentService;
 using ApiBase.Service.Services.PriorityService;
 using ApiBase.Service.Services.Project_UserService;
 using ApiBase.Service.Services.TaskTypeService;
+using ApiBase.Service.Services.StatusService;
 
 namespace ApiBase.Api
 {
@@ -82,6 +83,8 @@ namespace ApiBase.Api
 
             //===================== Status =====================
             services.AddSingleton<IStatusRepository, StatusRepository>();
+
+            services.AddSingleton<IStatusService, StatusService>();
             //===================== Priority =====================
 
             services.AddSingleton<IPriorityService, PriorityService>();
@@ -95,7 +98,7 @@ namespace ApiBase.Api
             //===================== Task_User ================
             services.AddSingleton<ITask_UserRepository, Task_UserRepository>();
             //========================== Task ==================
-        
+
 
 
 

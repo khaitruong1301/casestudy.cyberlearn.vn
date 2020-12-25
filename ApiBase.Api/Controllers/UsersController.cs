@@ -44,6 +44,18 @@ namespace ApiBase.Api.Controllers
             return await _userService.getUser(keyword);
         }
 
+
+        [HttpGet("getUserByProjectId")]
+        [Authorize]
+        public async Task<IActionResult> getUserByProjectId(int idProject)
+        {
+
+
+
+            return await _userService.getUserByProjectId(idProject);
+        }
+
+
         [HttpPost("signin")]
         public async Task<IActionResult> SignIn([FromBody] UserJiraLogin model)
         {

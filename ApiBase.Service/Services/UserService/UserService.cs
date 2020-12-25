@@ -19,6 +19,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using ApiBase.Service.Services.PriorityService;
 
 namespace ApiBase.Service.Services.UserService
 {
@@ -33,9 +34,10 @@ namespace ApiBase.Service.Services.UserService
         Task<ResponseEntity> RegisterUser(UserJiraModel modelVm);
         Task<ResponseEntity> SignIn(UserJiraLogin modelVm);
         Task<ResponseEntity> getUser(string keyword="");
+        Task<ResponseEntity> getUserByProjectId(int idProject=0);
 
 
-
+        
 
 
 
@@ -47,9 +49,11 @@ namespace ApiBase.Service.Services.UserService
         IUserTypeRepository _userTypeRepository;
         IUserType_RoleRepository _userType_RoleRepository;
         IUserJiraRepository _useJiraRepository;
+        IProjectRepository _projectRepository;
+        IProject_UserReponsitory _project_userRepository;
         private readonly IAppSettings _appSettings;
 
-        public UserService(IUserRepository userRepos, IRoleRepository roleRepos, IUserTypeRepository userTypeRepos, IUserType_RoleRepository userType_RoleRepos, IAppSettings appSettings,IUserJiraRepository usjira,
+        public UserService(IProjectRepository projectRepository,IUserRepository userRepos, IRoleRepository roleRepos, IUserTypeRepository userTypeRepos, IUserType_RoleRepository userType_RoleRepos, IAppSettings appSettings,IUserJiraRepository usjira, IProject_UserReponsitory project_userRepository,
             IMapper mapper)
             : base(userRepos, mapper)
         {
@@ -59,6 +63,8 @@ namespace ApiBase.Service.Services.UserService
             _userType_RoleRepository = userType_RoleRepos;
             _appSettings = appSettings;
             _useJiraRepository = usjira;
+            _projectRepository = projectRepository;
+            _project_userRepository = project_userRepository;
         }
 
         public async Task<ResponseEntity> SignUpAsync(InfoUser modelVm)
@@ -454,6 +460,35 @@ namespace ApiBase.Service.Services.UserService
 
             }
             return new ResponseEntity(StatusCodeConstants.OK, members, MessageConstants.MESSAGE_SUCCESS_200);
+
+        }
+
+        public async Task<ResponseEntity> getUserByProjectId(int idProject = 0)
+        {
+            var project = _project_userRepository.GetMultiByConditionAsync("projectId", idProject).Result;
+
+            if(project.Count() == 0)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "User not found in the project!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            List<userAssign> lstUser = new List<userAssign>();
+
+            userAssign us;
+            foreach (var item in project)
+            {
+                 us = new userAssign();
+                var user = _useJiraRepository.GetSingleByConditionAsync("id", item.userId).Result;
+                us.id = user.id;
+                us.name = user.name;
+                us.avatar = user.avatar;
+                us.alias = user.alias;
+                lstUser.Add(us);
+            }
+
+            return new ResponseEntity(StatusCodeConstants.OK, lstUser, MessageConstants.MESSAGE_SUCCESS_200);
+
 
         }
     }
