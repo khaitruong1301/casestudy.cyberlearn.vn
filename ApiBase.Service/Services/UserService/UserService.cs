@@ -473,17 +473,16 @@ namespace ApiBase.Service.Services.UserService
 
             }
 
-            List<userAssign> lstUser = new List<userAssign>();
+            List<Member> lstUser = new List<Member>();
 
-            userAssign us;
+            Member us;
             foreach (var item in project)
             {
-                 us = new userAssign();
+                 us = new Member();
                 var user = _useJiraRepository.GetSingleByConditionAsync("id", item.userId).Result;
-                us.id = user.id;
+                us.userId = user.id;
                 us.name = user.name;
                 us.avatar = user.avatar;
-                us.alias = user.alias;
                 lstUser.Add(us);
             }
 
