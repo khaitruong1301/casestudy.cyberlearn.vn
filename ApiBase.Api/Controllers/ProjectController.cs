@@ -179,5 +179,16 @@ namespace ApiBase.Api.Controllers
             var accessToken = Request.Headers[HeaderNames.Authorization];
             return await _projectService.removeTask(taskId, accessToken);
         }
+
+
+
+        [Authorize]
+        [HttpPost("getTaskDetail")]
+        public async Task<IActionResult> getTaskDetail(int taskId)
+        {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+            return await _projectService.getTaskDetail(taskId, accessToken);
+        }
+
     }
 }

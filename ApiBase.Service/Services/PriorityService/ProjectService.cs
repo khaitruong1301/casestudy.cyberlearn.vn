@@ -39,6 +39,7 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> createTask(taskInsert model,string token);
         Task<ResponseEntity> updateTask(TaskEdit model,string token);
         Task<ResponseEntity> removeTask(int taskId,string token);
+        Task<ResponseEntity> getTaskDetail(int taskId,string token);
 
 
 
@@ -138,6 +139,7 @@ namespace ApiBase.Service.Services.PriorityService
                 Repository.Models.Member mem = new Repository.Models.Member();
                 mem.userId = user.id;
                 mem.name = user.name;
+
                 mem.avatar = user.avatar;
                 members.Add(mem);
             }
@@ -777,6 +779,24 @@ namespace ApiBase.Service.Services.PriorityService
 
 
             return new ResponseEntity(StatusCodeConstants.OK, "update task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+        }
+
+        public async Task<ResponseEntity> getTaskDetail(int taskId, string token)
+        {
+            //Lấy list task 
+            var n =  _taskRepository.GetSingleByConditionAsync("taskId",taskId).Result;
+            if (n != null)
+            {
+                var lstStatus = await _statusRepository.GetAllAsync();
+
+                //Lấy list priority
+                IEnumerable<Priority> lstPriority = await _priorityRepository.GetAllAsync();
+                TaskDetail task = new TaskDetail { taskId = n.taskId, taskName = n.taskName, alias = n.alias, description = n.description, statusId = n.statusId, priorityTask = getTaskPriority(n.priorityId, lstPriority), originalEstimate = n.originalEstimate, timeTrackingSpent = n.timeTrackingSpent, timeTrackingRemaining = n.timeTrackingRemaining, assigness = getListUserAsign(n.taskId).ToList(), taskTypeDetail = getTaskType(n.typeId), lstComment = getListComment(n.taskId).ToList() };
+                return new ResponseEntity(StatusCodeConstants.OK, task, MessageConstants.MESSAGE_SUCCESS_200);
+
+            }
+            return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+
         }
     }
 
