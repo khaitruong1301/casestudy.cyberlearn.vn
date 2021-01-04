@@ -170,10 +170,11 @@ namespace ApiBase.Repository.Infrastructure
                 using (var conn = CreateConnection())
                 {
                     var parameters = new DynamicParameters();
-                    parameters.Add("@"+key, id);
+                    parameters.Add("@keyUpdate", key);
+                    parameters.Add("@valueUpdate", id);
                     parameters.Add("@tableName", _table);
                     parameters.Add("@listColumn", columns);
-                    await conn.ExecuteAsync("UPDATE_DATA", parameters, null, null, CommandType.StoredProcedure);
+                    await conn.ExecuteAsync("UPDATE_DATA_BY_KEY", parameters, null, null, CommandType.StoredProcedure);
                 }
                 return entity;
             }
