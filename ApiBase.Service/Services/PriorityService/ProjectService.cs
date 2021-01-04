@@ -222,7 +222,7 @@ namespace ApiBase.Service.Services.PriorityService
             var userTask =  _taskUserRepository.GetMultiByConditionAsync("taskId", taskId);
 
             IEnumerable<userAssign> uAssigns = userTask.Result.Select(n => { 
-                var user = getUserAsync(n.useId);
+                var user = getUserAsync(n.userId);
                 return new userAssign() { id = n.id, name = user.name, alias = user.alias, avatar = user.avatar };
             });
 
@@ -536,7 +536,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
             Task_User taskUserInsert = new Task_User();
-            taskUserInsert.useId = model.taskId;
+            taskUserInsert.userId = model.taskId;
             taskUserInsert.taskId = model.userId;
             await _taskUserRepository.InsertAsync(taskUserInsert);
             return new ResponseEntity(StatusCodeConstants.OK, "add user to task successfully!", MessageConstants.UPDATE_SUCCESS);
@@ -657,7 +657,7 @@ namespace ApiBase.Service.Services.PriorityService
                 Task_User tu = new Task_User();
                 tu.taskId = task.taskId;
                 tu.deleted = false;
-                tu.useId = item;
+                tu.userId = item;
                 await _taskUserRepository.InsertAsync(tu);
 
             }
