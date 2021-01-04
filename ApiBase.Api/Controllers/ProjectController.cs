@@ -125,8 +125,8 @@ namespace ApiBase.Api.Controllers
 
 
         [Authorize]
-        [HttpPut("updatePiority")]
-        public async Task<IActionResult> updatePiority([FromBody] UpdatePiority model)
+        [HttpPut("updatePriority")]
+        public async Task<IActionResult> updatePriority([FromBody] UpdatePiority model)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
             return await _projectService.updatePiority(model, accessToken);
