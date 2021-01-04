@@ -350,13 +350,13 @@ namespace ApiBase.Service.Services.PriorityService
 
 
             List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
-            columns.Add(new KeyValuePair<string, dynamic>("projectId", task.projectId));
+            columns.Add(new KeyValuePair<string, dynamic>("taskId", task.taskId));
             columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
 
-            var projectUser = _projectUserRepository.GetMultiByListConditionAndAsync(columns).Result;
-            if(projectUser.Count() > 0)
+            var projectUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if(projectUser.Count() == 0)
             {
-                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "user is not assign!", MessageConstants.MESSAGE_ERROR_404);
 
             }
 
@@ -385,19 +385,19 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
 
+
             UserJira user = _userService.getUserByToken(token).Result;
-            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("taskId", task.taskId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
 
-            if (pro == null)
+            var projectUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if (projectUser.Count() == 0)
             {
-                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "user is not assign!", MessageConstants.MESSAGE_ERROR_404);
 
             }
-            if (pro.creator != user.id)
-            {
-                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
 
-            }
 
             task.priorityId = model.priorityId;
 
@@ -418,16 +418,14 @@ namespace ApiBase.Service.Services.PriorityService
             }
 
             UserJira user = _userService.getUserByToken(token).Result;
-            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("taskId", task.taskId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
 
-            if (pro == null)
+            var projectUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if (projectUser.Count() == 0)
             {
-                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
-
-            }
-            if (pro.creator != user.id)
-            {
-                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "user is not assign!", MessageConstants.MESSAGE_ERROR_404);
 
             }
 
@@ -450,18 +448,17 @@ namespace ApiBase.Service.Services.PriorityService
             }
 
             UserJira user = _userService.getUserByToken(token).Result;
-            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("taskId", task.taskId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
 
-            if (pro == null)
+            var projectUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if (projectUser.Count() == 0)
             {
-                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "user is not assign!", MessageConstants.MESSAGE_ERROR_404);
 
             }
-            if (pro.creator != user.id)
-            {
-                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
 
-            }
 
             task.timeTrackingSpent = model.timeTrackingSpent;
             task.timeTrackingRemaining = model.timeTrackingRemaining;
@@ -484,18 +481,17 @@ namespace ApiBase.Service.Services.PriorityService
             }
 
             UserJira user = _userService.getUserByToken(token).Result;
-            Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+            List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+            columns.Add(new KeyValuePair<string, dynamic>("taskId", task.taskId));
+            columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
 
-            if (pro == null)
+            var projectUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            if (projectUser.Count() == 0)
             {
-                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "user is not assign!", MessageConstants.MESSAGE_ERROR_404);
 
             }
-            if (pro.creator != user.id)
-            {
-                return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);
 
-            }
 
             task.originalEstimate = model.originalEstimate;
 
