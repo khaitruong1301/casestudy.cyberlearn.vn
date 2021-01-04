@@ -346,7 +346,7 @@ namespace ApiBase.Service.Services.PriorityService
         public async Task<ResponseEntity> updateStatusTask(UpdateStatusVM statusTask, string token)
         {
             UserJira user = _userService.getUserByToken(token).Result;
-            var task = _taskRepository.GetSingleByConditionAsync("id", statusTask.taskId).Result;
+            var task = _taskRepository.GetSingleByConditionAsync("taskId", statusTask.taskId).Result;
 
 
             List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
