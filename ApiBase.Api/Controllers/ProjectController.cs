@@ -183,7 +183,7 @@ namespace ApiBase.Api.Controllers
 
 
         [Authorize]
-        [HttpPost("getTaskDetail")]
+        [HttpGet("getTaskDetail")]
         public async Task<IActionResult> getTaskDetail(int taskId)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
