@@ -19,6 +19,7 @@ namespace ApiBase.Repository.Infrastructure
         Task<T> InsertAsync(T entity);
 
         Task<T> UpdateAsync(dynamic id, T entity);
+        Task<T> UpdateAsync(dynamic key,dynamic id, T entity);
         Task<T> UpdateByConditionAsync(dynamic keyUpdate,dynamic valueUpdate, T entity);
         Task<T> UpdateAsyncHasArrayNull(dynamic id, T entity);
 
@@ -150,6 +151,26 @@ namespace ApiBase.Repository.Infrastructure
                 {
                     var parameters = new DynamicParameters();
                     parameters.Add("@id", id);
+                    parameters.Add("@tableName", _table);
+                    parameters.Add("@listColumn", columns);
+                    await conn.ExecuteAsync("UPDATE_DATA", parameters, null, null, CommandType.StoredProcedure);
+                }
+                return entity;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+        public virtual async Task<T> UpdateAsync(dynamic key,dynamic id, T entity)
+        {
+            try
+            {
+                string columns = GenerateTableColumnsUpdate(entity);
+                using (var conn = CreateConnection())
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@"+key, id);
                     parameters.Add("@tableName", _table);
                     parameters.Add("@listColumn", columns);
                     await conn.ExecuteAsync("UPDATE_DATA", parameters, null, null, CommandType.StoredProcedure);

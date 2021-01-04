@@ -370,7 +370,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             task.statusId = statusTask.statusId;
 
-            await _taskRepository.UpdateAsync(task.taskId, task);
+            await _taskRepository.UpdateAsync("taskId",task.taskId, task);
 
             return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
         }
@@ -402,7 +402,8 @@ namespace ApiBase.Service.Services.PriorityService
             task.priorityId = model.priorityId;
 
 
-            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            await _taskRepository.UpdateAsync("taskId", task.taskId, task);
 
             return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
         }
@@ -432,7 +433,8 @@ namespace ApiBase.Service.Services.PriorityService
             task.description = model.description;
 
 
-            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            await _taskRepository.UpdateAsync("taskId", task.taskId, task);
 
             return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
         }
@@ -464,7 +466,8 @@ namespace ApiBase.Service.Services.PriorityService
             task.timeTrackingRemaining = model.timeTrackingRemaining;
 
 
-            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            await _taskRepository.UpdateAsync("taskId", task.taskId, task);
 
             return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
         }
@@ -496,7 +499,8 @@ namespace ApiBase.Service.Services.PriorityService
             task.originalEstimate = model.originalEstimate;
 
 
-            await _taskRepository.UpdateAsync(model.taskId, task);
+
+            await _taskRepository.UpdateAsync("taskId", task.taskId, task);
 
             return new ResponseEntity(StatusCodeConstants.OK, "Update task successfully!", MessageConstants.UPDATE_SUCCESS);
         }
@@ -761,7 +765,7 @@ namespace ApiBase.Service.Services.PriorityService
             taskModel.reporterId = user.id;
             taskModel.priorityId = model.priorityId;
             taskModel.deleted = false;
-            await _taskRepository.UpdateAsync(taskModel.taskId,taskModel);
+            await _taskRepository.UpdateAsync("taskId",taskModel.taskId,taskModel);
 
             //foreach (var item in model.listUserAsign)
             //{
