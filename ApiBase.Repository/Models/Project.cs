@@ -71,6 +71,7 @@ namespace ApiBase.Repository.Models
         public List<userAssign> assigness = new List<userAssign>();
 
         public List<CommentTask> lstComment = new List<CommentTask>();
+        public int projectId { get; set; }
 
     }
 
