@@ -223,7 +223,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             IEnumerable<userAssign> uAssigns = userTask.Result.Select(n => { 
                 var user = getUserAsync(n.userId);
-                return new userAssign() { id = n.id, name = user.name, alias = user.alias, avatar = user.avatar };
+                return new userAssign() { id = n.userId, name = user.name, alias = user.alias, avatar = user.avatar };
             });
 
             return uAssigns;
