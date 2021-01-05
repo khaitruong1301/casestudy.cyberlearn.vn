@@ -62,6 +62,8 @@ namespace ApiBase.Repository.Models
         public int originalEstimate { get; set; }
         public int timeTrackingSpent { get; set; }
         public int timeTrackingRemaining { get; set; }
+        public int typeId { get; set; }
+        public int priorityId { get; set; }
 
         public TaskPriority priorityTask = new TaskPriority();
 
@@ -72,6 +74,7 @@ namespace ApiBase.Repository.Models
 
         public List<CommentTask> lstComment = new List<CommentTask>();
         public int projectId { get; set; }
+
 
     }
 
