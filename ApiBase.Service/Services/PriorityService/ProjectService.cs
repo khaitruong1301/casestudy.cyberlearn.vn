@@ -176,7 +176,7 @@ namespace ApiBase.Service.Services.PriorityService
             {
                 var statusTask = new StatusTask { statusId = status.statusId, statusName = status.statusName, alias = status.alias };
 
-                List<TaskDetail> task = lstTask.Where(n =>  n.projectId == projectDetail.id && n.statusId == status.statusId).Select(n=> new TaskDetail {taskId= n.taskId,taskName=n.taskName,alias=n.alias,description=n.description,statusId=n.statusId,priorityTask = getTaskPriority(n.priorityId,lstPriority),originalEstimate = n.originalEstimate,timeTrackingSpent = n.timeTrackingSpent,timeTrackingRemaining=n.timeTrackingRemaining,assigness=getListUserAsign(n.taskId).ToList(),taskTypeDetail = getTaskType(n.typeId),lstComment= getListComment(n.taskId).ToList(),projectId=n.projectId}).ToList();
+                List<TaskDetail> task = lstTask.Where(n =>  n.projectId == projectDetail.id && n.statusId == status.statusId).Select(n=> new TaskDetail {taskId= n.taskId,taskName=n.taskName,alias=n.alias,description=FuncUtilities.Base64Decode( n.description),statusId=n.statusId,priorityTask = getTaskPriority(n.priorityId,lstPriority),originalEstimate = n.originalEstimate,timeTrackingSpent = n.timeTrackingSpent,timeTrackingRemaining=n.timeTrackingRemaining,assigness=getListUserAsign(n.taskId).ToList(),taskTypeDetail = getTaskType(n.typeId),lstComment= getListComment(n.taskId).ToList(),projectId=n.projectId}).ToList();
                 
                 statusTask.lstTaskDeTail.AddRange(task);   
 
@@ -643,7 +643,7 @@ namespace ApiBase.Service.Services.PriorityService
             Repository.Models.Task task = new Repository.Models.Task();
             task.taskName = model.taskName;
             task.alias = FuncUtilities.BestLower(model.taskName);
-            task.description = model.description;
+            task.description = FuncUtilities.Base64Encode( model.description);
             task.statusId = model.statusId;
             task.originalEstimate = model.originalEstimate;
             task.timeTrackingSpent = model.timeTrackingSpent;
@@ -791,7 +791,7 @@ namespace ApiBase.Service.Services.PriorityService
 
                 //Lấy list priority
                 IEnumerable<Priority> lstPriority = await _priorityRepository.GetAllAsync();
-                TaskDetail task = new TaskDetail { taskId = n.taskId, taskName = n.taskName, alias = n.alias, description = n.description, statusId = n.statusId, priorityTask = getTaskPriority(n.priorityId, lstPriority), originalEstimate = n.originalEstimate, timeTrackingSpent = n.timeTrackingSpent, timeTrackingRemaining = n.timeTrackingRemaining, assigness = getListUserAsign(n.taskId).ToList(), taskTypeDetail = getTaskType(n.typeId), lstComment = getListComment(n.taskId).ToList(),projectId=n.projectId };
+                TaskDetail task = new TaskDetail { taskId = n.taskId, taskName = n.taskName, alias = n.alias, description = FuncUtilities.Base64Decode( n.description), statusId = n.statusId, priorityTask = getTaskPriority(n.priorityId, lstPriority), originalEstimate = n.originalEstimate, timeTrackingSpent = n.timeTrackingSpent, timeTrackingRemaining = n.timeTrackingRemaining, assigness = getListUserAsign(n.taskId).ToList(), taskTypeDetail = getTaskType(n.typeId), lstComment = getListComment(n.taskId).ToList(),projectId=n.projectId };
                 return new ResponseEntity(StatusCodeConstants.OK, task, MessageConstants.MESSAGE_SUCCESS_200);
 
             }
