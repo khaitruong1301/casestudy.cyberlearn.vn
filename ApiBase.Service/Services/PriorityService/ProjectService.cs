@@ -99,7 +99,7 @@ namespace ApiBase.Service.Services.PriorityService
             newProject.alias = alias;
             newProject.categoryId = model.categoryId;
             newProject.deleted = false;
-            newProject.description = model.description;
+            newProject.description = FuncUtilities.Base64Encode( model.description);
             newProject.projectName = model.projectName;
             if (token != "")
             {
@@ -430,7 +430,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
 
-            task.description = model.description;
+            task.description = FuncUtilities.Base64Encode( model.description);
 
 
 
@@ -755,7 +755,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             taskModel.taskName = model.taskName;
             taskModel.alias = FuncUtilities.BestLower(model.taskName);
-            taskModel.description = model.description;
+            taskModel.description = FuncUtilities.Base64Encode( model.description);
             taskModel.statusId = model.statusId;
             taskModel.originalEstimate = model.originalEstimate;
             taskModel.timeTrackingSpent = model.timeTrackingSpent;
