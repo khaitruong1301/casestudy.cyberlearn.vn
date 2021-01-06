@@ -746,9 +746,9 @@ namespace ApiBase.Service.Services.PriorityService
             string alias = FuncUtilities.BestLower(model.taskName);
             //Kiểm tra task tồn tại chưa
             var taskValid = _taskRepository.GetSingleByConditionAsync("alias", alias);
-            if (taskValid != null)
+            if (taskValid.Id != taskModel.taskId)
             {
-                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "task already exists!", MessageConstants.MESSAGE_ERROR_500);
+                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Task name already exists!", MessageConstants.MESSAGE_ERROR_500);
 
             }
 
@@ -767,14 +767,27 @@ namespace ApiBase.Service.Services.PriorityService
             taskModel.deleted = false;
             await _taskRepository.UpdateAsync("taskId",taskModel.taskId,taskModel);
 
-            //foreach (var item in model.listUserAsign)
-            //{
-            //    Task_User tu = new Task_User();
-            //    tu.taskId = taskModel.taskId;
-            //    tu.deleted = false;
-            //    tu.taskId = item;
-            //    await _taskUserRepository.InsertAsync(tu);
-            //}
+            //dell user cũ 
+            var taskUserCu = _taskUserRepository.GetMultiByConditionAsync("taskId", taskModel.taskId).Result;
+            if (taskUserCu.Count() > 0)
+            {
+                List<dynamic> lstDynamicId = new List<dynamic>();
+                foreach(var item in taskUserCu)
+                {
+                    lstDynamicId.Add(item.id);
+                }
+                await _taskUserRepository.DeleteByIdAsync(lstDynamicId);
+
+            }
+
+            foreach (var item in model.listUserAsign)
+            {
+                Task_User tu = new Task_User();
+                tu.taskId = taskModel.taskId;
+                tu.deleted = false;
+                tu.taskId = item;
+                await _taskUserRepository.InsertAsync(tu);
+            }
 
 
 
