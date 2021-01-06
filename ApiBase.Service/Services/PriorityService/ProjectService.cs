@@ -785,7 +785,7 @@ namespace ApiBase.Service.Services.PriorityService
                 Task_User tu = new Task_User();
                 tu.taskId = taskModel.taskId;
                 tu.deleted = false;
-                tu.taskId = item;
+                tu.userId = item;
                 await _taskUserRepository.InsertAsync(tu);
             }
 
