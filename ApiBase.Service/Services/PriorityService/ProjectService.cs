@@ -151,7 +151,7 @@ namespace ApiBase.Service.Services.PriorityService
             projectDetail.alias = pro.alias;
             projectDetail.projectName = pro.projectName;
             projectDetail.projectCategory = new ProjectCategoryDetail() { id=projectCategory.id,name=projectCategory.projectCategoryName};
-            projectDetail.description = pro.description;
+            projectDetail.description = FuncUtilities.Base64Decode(pro.description);
             projectDetail.id = pro.id;
             projectDetail.projectName = pro.projectName;
             projectDetail.members = members;
@@ -256,7 +256,7 @@ namespace ApiBase.Service.Services.PriorityService
                     creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
                 }
 
-                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = n.description, categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator , members = getListMember(n.id) };
+                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = FuncUtilities.Base64Decode(n.description), categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator , members = getListMember(n.id) };
                 listResult.Add(result);
 
 
@@ -296,7 +296,7 @@ namespace ApiBase.Service.Services.PriorityService
             project.alias = FuncUtilities.BestLower(projectUpdate.projectName);
             //project.creator = project.creator;
             project.creator = _userService.getUserByToken(token).Result.id;
-            project.description = projectUpdate.description;
+            project.description = FuncUtilities.Base64Encode(projectUpdate.description);
             project.projectName = projectUpdate.projectName;
 
             var result = _projectRepository.UpdateAsync(idProject, project).Result;
