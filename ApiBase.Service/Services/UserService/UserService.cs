@@ -550,6 +550,11 @@ namespace ApiBase.Service.Services.UserService
 
                 var lstComment = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
 
+                List<KeyValuePair<string, dynamic>> columns1 = new List<KeyValuePair<string, dynamic>>();
+                columns.Add(new KeyValuePair<string, dynamic>("creator", userEdit.id));
+                var project = _projectRepository.GetMultiByListConditionAndAsync(columns).Result;
+
+
                 List<dynamic> lstResult = new List<dynamic>();
                 foreach (var item in lstTask)
                 {
@@ -578,8 +583,26 @@ namespace ApiBase.Service.Services.UserService
                 await _commentRepository.DeleteByIdAsync(lstResult2);
 
 
+
+
+
+                List<dynamic> lstResult3 = new List<dynamic>();
+
+                foreach (var item in project)
+                {
+                    lstResult3.Add(item.id);
+                }
+                await _useJiraRepository.DeleteByIdAsync(lstResult3);
+
+
+
+
                 List<dynamic> lstId = new List<dynamic>();
                 lstId.Add(id);
+
+
+
+
 
                 await _useJiraRepository.DeleteByIdAsync(lstId);
 
