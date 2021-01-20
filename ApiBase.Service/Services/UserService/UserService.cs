@@ -554,6 +554,12 @@ namespace ApiBase.Service.Services.UserService
                 columns.Add(new KeyValuePair<string, dynamic>("creator", userEdit.id));
                 var project = _projectRepository.GetMultiByListConditionAndAsync(columns).Result;
 
+                if(project.Count()>0)
+                {
+                    return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, "Người dùng đã tạo project không thể xoá được !", MessageConstants.MESSAGE_ERROR_400);
+
+                }
+
 
                 List<dynamic> lstResult = new List<dynamic>();
                 foreach (var item in lstTask)
@@ -584,15 +590,6 @@ namespace ApiBase.Service.Services.UserService
 
 
 
-
-
-                List<dynamic> lstResult3 = new List<dynamic>();
-
-                foreach (var item in project)
-                {
-                    lstResult3.Add(item.id);
-                }
-                await _useJiraRepository.DeleteByIdAsync(lstResult3);
 
 
 
