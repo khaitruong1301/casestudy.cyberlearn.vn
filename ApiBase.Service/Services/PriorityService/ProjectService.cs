@@ -198,6 +198,7 @@ namespace ApiBase.Service.Services.PriorityService
             {
                 var user = getUserAsync(n.userId);
                 CommentTask res = new CommentTask() { idUser = n.userId, avatar = user.avatar, name = user.name, commentContent = n.contentComment };
+                res.commentContent = FuncUtilities.Base64Decode(n.contentComment);
                 return res;
             });
             

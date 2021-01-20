@@ -68,6 +68,7 @@ namespace ApiBase.Service.Services.CommentService
             try
             {
                 var result = await _commentRepository.GetSingleByConditionAsync("id", taskId);
+                result.contentComment = FuncUtilities.Base64Decode(result.contentComment);
                 return new ResponseEntity(StatusCodeConstants.OK, result, MessageConstants.MESSAGE_SUCCESS_200);
             }catch(Exception ex)
             {
@@ -83,7 +84,7 @@ namespace ApiBase.Service.Services.CommentService
                 Comment cmt = new Comment();
                 cmt.alias = FuncUtilities.BestLower(model.contentComment);
                 cmt.deleted = false;
-                cmt.contentComment = model.contentComment;
+                cmt.contentComment = FuncUtilities.Base64Encode( model.contentComment);
                 cmt.userId = userJira.id;
                 cmt.taskId = model.taskId;
                 cmt = await _commentRepository.InsertAsync(cmt);
@@ -113,7 +114,7 @@ namespace ApiBase.Service.Services.CommentService
                     return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "403 Forbidden !", MessageConstants.MESSAGE_ERROR_500);
                 }
 
-                cmt.contentComment = commentUpdate.contentComment;
+                cmt.contentComment = FuncUtilities.Base64Encode(commentUpdate.contentComment);
                 cmt.alias = FuncUtilities.BestLower(cmt.contentComment);
 
                 await _commentRepository.UpdateAsync(cmt.id, cmt);

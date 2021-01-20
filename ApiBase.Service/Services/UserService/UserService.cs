@@ -54,10 +54,12 @@ namespace ApiBase.Service.Services.UserService
         IProjectRepository _projectRepository;
         IProject_UserReponsitory _project_userRepository;
         ITask_UserRepository _taskUserRepository;
+        ICommentRepository _commentRepository;
+
 
         private readonly IAppSettings _appSettings;
 
-        public UserService(IProjectRepository projectRepository,IUserRepository userRepos, IRoleRepository roleRepos, IUserTypeRepository userTypeRepos, IUserType_RoleRepository userType_RoleRepos, IAppSettings appSettings,IUserJiraRepository usjira, IProject_UserReponsitory project_userRepository, ITask_UserRepository task_UserRepository,
+        public UserService(IProjectRepository projectRepository,IUserRepository userRepos, IRoleRepository roleRepos, IUserTypeRepository userTypeRepos, IUserType_RoleRepository userType_RoleRepos, IAppSettings appSettings,IUserJiraRepository usjira, IProject_UserReponsitory project_userRepository, ITask_UserRepository task_UserRepository, ICommentRepository commentRepository,
             IMapper mapper)
             : base(userRepos, mapper)
         {
@@ -70,6 +72,7 @@ namespace ApiBase.Service.Services.UserService
             _projectRepository = projectRepository;
             _project_userRepository = project_userRepository;
             _taskUserRepository = task_UserRepository;
+            _commentRepository = commentRepository;
         }
 
         public async Task<ResponseEntity> SignUpAsync(InfoUser modelVm)
@@ -542,6 +545,11 @@ namespace ApiBase.Service.Services.UserService
 
 
                 var lstTask = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+
+
+
+                var lstComment = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+
                 List<dynamic> lstResult = new List<dynamic>();
                 foreach (var item in lstTask)
                 {
@@ -557,6 +565,18 @@ namespace ApiBase.Service.Services.UserService
                     lstResult1.Add(item.id);
                 }
                 await _project_userRepository.DeleteByIdAsync(lstResult1);
+
+
+
+
+                List<dynamic> lstResult2 = new List<dynamic>();
+
+                foreach (var item in lstComment)
+                {
+                    lstResult2.Add(item.id);
+                }
+                await _commentRepository.DeleteByIdAsync(lstResult2);
+
 
                 List<dynamic> lstId = new List<dynamic>();
                 lstId.Add(id);
