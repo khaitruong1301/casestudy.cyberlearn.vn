@@ -35,6 +35,21 @@ namespace ApiBase.Api.Controllers
             return await _userService.RegisterUser(model);
         }
 
+
+        [HttpPut("editUser")]
+        public async Task<IActionResult> editUser([FromBody] UserJiraModelUpdate model)
+        {
+            return await _userService.editUser(model);
+        }
+
+        [Authorize]
+
+        [HttpDelete("deleteUser")]
+        public async Task<IActionResult> delete( int id)
+        {
+            return await _userService.deleteUser(id);
+        }
+
         [HttpGet("getUser")]
         [Authorize]
         public async Task<IActionResult> getUser(string keyword = "") {

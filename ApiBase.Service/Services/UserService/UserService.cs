@@ -32,12 +32,14 @@ namespace ApiBase.Service.Services.UserService
         Task<UserJira> getUserByToken(string token);
 
         Task<ResponseEntity> RegisterUser(UserJiraModel modelVm);
+        Task<ResponseEntity> editUser(UserJiraModelUpdate modelVm);
         Task<ResponseEntity> SignIn(UserJiraLogin modelVm);
         Task<ResponseEntity> getUser(string keyword="");
+        Task<ResponseEntity> deleteUser(int id);
         Task<ResponseEntity> getUserByProjectId(int idProject=0);
 
 
-        
+
 
 
 
@@ -51,9 +53,11 @@ namespace ApiBase.Service.Services.UserService
         IUserJiraRepository _useJiraRepository;
         IProjectRepository _projectRepository;
         IProject_UserReponsitory _project_userRepository;
+        ITask_UserRepository _taskUserRepository;
+
         private readonly IAppSettings _appSettings;
 
-        public UserService(IProjectRepository projectRepository,IUserRepository userRepos, IRoleRepository roleRepos, IUserTypeRepository userTypeRepos, IUserType_RoleRepository userType_RoleRepos, IAppSettings appSettings,IUserJiraRepository usjira, IProject_UserReponsitory project_userRepository,
+        public UserService(IProjectRepository projectRepository,IUserRepository userRepos, IRoleRepository roleRepos, IUserTypeRepository userTypeRepos, IUserType_RoleRepository userType_RoleRepos, IAppSettings appSettings,IUserJiraRepository usjira, IProject_UserReponsitory project_userRepository, ITask_UserRepository task_UserRepository,
             IMapper mapper)
             : base(userRepos, mapper)
         {
@@ -65,6 +69,7 @@ namespace ApiBase.Service.Services.UserService
             _useJiraRepository = usjira;
             _projectRepository = projectRepository;
             _project_userRepository = project_userRepository;
+            _taskUserRepository = task_UserRepository;
         }
 
         public async Task<ResponseEntity> SignUpAsync(InfoUser modelVm)
@@ -488,6 +493,82 @@ namespace ApiBase.Service.Services.UserService
 
             return new ResponseEntity(StatusCodeConstants.OK, lstUser, MessageConstants.MESSAGE_SUCCESS_200);
 
+
+        }
+
+        public async Task<ResponseEntity> editUser(UserJiraModelUpdate modelVm)
+        {
+            var userEdit = _useJiraRepository.GetSingleByConditionAsync("id", modelVm.id).Result;
+
+            try
+            {
+                if (userEdit == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, MessageConstants.DELETE_ERROR, MessageConstants.MESSAGE_ERROR_404);
+
+            }
+
+            userEdit.name = modelVm.name;
+            userEdit.passWord = modelVm.passWord;
+                userEdit.phoneNumber = modelVm.phoneNumber;
+                await _useJiraRepository.UpdateAsync(modelVm.id, userEdit);
+
+
+                return new ResponseEntity(StatusCodeConstants.OK, MessageConstants.UPDATE_SUCCESS, MessageConstants.MESSAGE_SUCCESS_200);
+            }
+            catch (Exception err)
+            {
+                return new ResponseEntity(StatusCodeConstants.OK, MessageConstants.UPDATE_ERROR, MessageConstants.MESSAGE_ERROR_400);
+
+            }
+
+
+        }
+
+        public async Task<ResponseEntity> deleteUser(int id)
+        {
+            try
+            {
+                var userEdit = _useJiraRepository.GetSingleByConditionAsync("id", id).Result;
+                if(userEdit == null)
+                {
+                    return new ResponseEntity(StatusCodeConstants.NOT_FOUND, MessageConstants.DELETE_ERROR, MessageConstants.MESSAGE_ERROR_404);
+
+                }
+                List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
+                columns.Add(new KeyValuePair<string, dynamic>("userId", userEdit.id));
+                var lstUserProject = _project_userRepository.GetMultiByListConditionAndAsync(columns).Result;
+
+
+
+                var lstTask = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+                List<dynamic> lstResult = new List<dynamic>();
+                foreach (var item in lstTask)
+                {
+                    lstResult.Add(item.id);
+
+                }
+                await _taskUserRepository.DeleteByIdAsync(lstResult);
+
+                List<dynamic> lstResult1 = new List<dynamic>();
+
+                foreach (var item in lstUserProject)
+                {
+                    lstResult1.Add(item.id);
+                }
+                await _project_userRepository.DeleteByIdAsync(lstResult1);
+
+                List<dynamic> lstId = new List<dynamic>();
+                lstId.Add(id);
+
+                await _useJiraRepository.DeleteByIdAsync(lstId);
+
+                return new ResponseEntity(StatusCodeConstants.OK, MessageConstants.DELETE_SUCCESS, MessageConstants.MESSAGE_SUCCESS_200);
+            }catch (Exception err)
+            {
+                return new ResponseEntity(StatusCodeConstants.OK, MessageConstants.DELETE_ERROR, MessageConstants.MESSAGE_ERROR_400);
+
+            }
 
         }
     }
