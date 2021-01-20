@@ -551,8 +551,8 @@ namespace ApiBase.Service.Services.UserService
                 var lstComment = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
 
                 List<KeyValuePair<string, dynamic>> columns1 = new List<KeyValuePair<string, dynamic>>();
-                columns.Add(new KeyValuePair<string, dynamic>("creator", userEdit.id));
-                var project = _projectRepository.GetMultiByListConditionAndAsync(columns).Result;
+                columns1.Add(new KeyValuePair<string, dynamic>("creator", userEdit.id));
+                var project = _projectRepository.GetMultiByListConditionAndAsync(columns1).Result;
 
                 if(project.Count()>0)
                 {
@@ -606,7 +606,7 @@ namespace ApiBase.Service.Services.UserService
                 return new ResponseEntity(StatusCodeConstants.OK, MessageConstants.DELETE_SUCCESS, MessageConstants.MESSAGE_SUCCESS_200);
             }catch (Exception err)
             {
-                return new ResponseEntity(StatusCodeConstants.OK, MessageConstants.DELETE_ERROR, MessageConstants.MESSAGE_ERROR_400);
+                return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, MessageConstants.DELETE_ERROR, MessageConstants.MESSAGE_ERROR_400);
 
             }
 
