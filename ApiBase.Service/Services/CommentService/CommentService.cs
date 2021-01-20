@@ -67,9 +67,19 @@ namespace ApiBase.Service.Services.CommentService
         {
             try
             {
-                var result = await _commentRepository.GetSingleByConditionAsync("id", taskId);
-                result.contentComment = FuncUtilities.Base64Decode(result.contentComment);
-                return new ResponseEntity(StatusCodeConstants.OK, result, MessageConstants.MESSAGE_SUCCESS_200);
+                var result =  _commentRepository.GetMultiByConditionAsync("taskId", taskId).Result;
+                List<Comment> lstComment = new List<Comment>();
+                foreach(var item in result)
+                {
+                    Comment cmt = new Comment();
+                    cmt.alias = item.alias;
+                    cmt.contentComment = FuncUtilities.Base64Decode(item.contentComment);
+                    cmt.id = item.id;
+                    cmt.taskId = item.taskId;
+                    cmt.userId = item.userId;
+                    lstComment.Add(cmt);
+                }
+                return new ResponseEntity(StatusCodeConstants.OK, lstComment, MessageConstants.MESSAGE_SUCCESS_200);
             }catch(Exception ex)
             {
                 return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, "Comment is not found", MessageConstants.INSERT_ERROR);
