@@ -351,22 +351,22 @@ namespace ApiBase.Service.Services.PriorityService
 
             List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
             columns.Add(new KeyValuePair<string, dynamic>("taskId", task.taskId));
-            columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
-
-            var projectUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
-            if(projectUser.Count() == 0)
-            {
-                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "user is not assign!", MessageConstants.MESSAGE_ERROR_404);
-
-            }
-
-
+            //columns.Add(new KeyValuePair<string, dynamic>("userId", user.id));
 
             if (task == null)
             {
                 return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "task is not found!", MessageConstants.MESSAGE_ERROR_404);
 
             }
+            var projectUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
+            //if(projectUser.Count() == 0)
+            //{
+            //    return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "user is not assign!", MessageConstants.MESSAGE_ERROR_404);
+
+            //}
+
+
+
 
             task.statusId = statusTask.statusId;
 
