@@ -91,7 +91,7 @@ namespace ApiBase.Service.Services.CommentService
                 if (cmt == null)
                     return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, model, MessageConstants.INSERT_ERROR);
                 cmt.contentComment = FuncUtilities.Base64Decode(model.contentComment);
-                return new ResponseEntity(StatusCodeConstants.CREATED, cmt, MessageConstants.INSERT_SUCCESS);
+                return new ResponseEntity(StatusCodeConstants.OK, cmt, MessageConstants.INSERT_SUCCESS);
             }catch (Exception ex)
             {
                     return new ResponseEntity(StatusCodeConstants.AUTHORIZATION, "Unauthorize", MessageConstants.MESSAGE_ERROR_401);
@@ -119,7 +119,7 @@ namespace ApiBase.Service.Services.CommentService
 
                 await _commentRepository.UpdateAsync(cmt.id, cmt);
 
-                cmt.contentComment = FuncUtilities.Base64Decode(model.contentComment);
+                cmt.contentComment = FuncUtilities.Base64Decode(cmt.contentComment);
 
                 return new ResponseEntity(StatusCodeConstants.OK, cmt, MessageConstants.UPDATE_SUCCESS);
             }
