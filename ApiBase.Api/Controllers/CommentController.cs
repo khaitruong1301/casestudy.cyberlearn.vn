@@ -50,14 +50,14 @@ namespace ApiBase.Api.Controllers
             return result;
         }
 
-        [HttpPut("updateComment/{idComment}")]
+        [HttpPut("updateComment")]
 
         [Authorize]
 
-        public async Task<IActionResult> updateComment ( int idComment,CommentModelUpdate model)
+        public async Task<IActionResult> updateComment ( CommentModelUpdate model)
         {
             var accessToken = Request.Headers[HeaderNames.Authorization];
-            var result = await _commentService.updateComment(model, idComment, accessToken);
+            var result = await _commentService.updateComment( model, accessToken);
             return result;
         }
 

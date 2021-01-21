@@ -20,19 +20,21 @@ namespace ApiBase.Service.Services.CommentService
         Task<ResponseEntity> getCommentByTask(int taskId=0);
         Task<ResponseEntity> insertComment(CommentModelInsert model,string token);
         Task<ResponseEntity> deleteComment(int idComment, string token);
-        Task<ResponseEntity> updateComment(CommentModelUpdate commentUpdate, int idComment, string token);
+        Task<ResponseEntity> updateComment(CommentModelUpdate commentUpdate, string token);
 
     }
     public class CommentService : ServiceBase<Comment, Comment>, ICommentService
     {
         ICommentRepository _commentRepository;
         IUserService _userService;
-        public CommentService(ICommentRepository proRe, IUserService userService,
+        IUserJiraRepository _userJira;
+        public CommentService(ICommentRepository proRe, IUserService userService, IUserJiraRepository usersv,
             IMapper mapper)
             : base(proRe, mapper)
         {
             _commentRepository = proRe;
             _userService = userService;
+            _userJira = usersv;
         }
 
      
@@ -68,15 +70,23 @@ namespace ApiBase.Service.Services.CommentService
             try
             {
                 var result =  _commentRepository.GetMultiByConditionAsync("taskId", taskId).Result;
-                List<Comment> lstComment = new List<Comment>();
+
+                List<CommentViewModel> lstComment = new List<CommentViewModel>();
                 foreach(var item in result)
                 {
-                    Comment cmt = new Comment();
+                    var user = _userJira.GetSingleByConditionAsync("id",item.userId).Result;
+
+                    CommentViewModel cmt = new CommentViewModel();
                     cmt.alias = item.alias;
                     cmt.contentComment = FuncUtilities.Base64Decode(item.contentComment);
                     cmt.id = item.id;
                     cmt.taskId = item.taskId;
                     cmt.userId = item.userId;
+                    cmt.user.userId = user.id;
+                    cmt.user.avatar = user.avatar;
+                    cmt.user.name = user.name;
+
+
                     lstComment.Add(cmt);
                 }
                 return new ResponseEntity(StatusCodeConstants.OK, lstComment, MessageConstants.MESSAGE_SUCCESS_200);
@@ -109,12 +119,13 @@ namespace ApiBase.Service.Services.CommentService
             }
         }
 
-        public async Task<ResponseEntity> updateComment(CommentModelUpdate commentUpdate,int idComment,string token)
+        
+        public async Task<ResponseEntity> updateComment(CommentModelUpdate commentUpdate,string token)
         {
             try
             {
                 var userJira = _userService.getUserByToken(token);
-                Comment cmt = await _commentRepository.GetSingleByConditionAsync("id", idComment);
+                Comment cmt = await _commentRepository.GetSingleByConditionAsync("id", commentUpdate.id);
                 if(cmt == null)
                 {
                     return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Comment is not found !", MessageConstants.MESSAGE_ERROR_500);
