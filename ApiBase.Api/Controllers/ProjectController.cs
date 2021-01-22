@@ -37,7 +37,6 @@ namespace ApiBase.Api.Controllers
         public async Task<IActionResult> createProjectAuthorize([FromBody] ProjectInsert model)
         {   
             var accessToken = Request.Headers[HeaderNames.Authorization];
-
             return await _projectService.createProject(model, accessToken);
         }
 
@@ -54,6 +53,7 @@ namespace ApiBase.Api.Controllers
         {
             return await _projectService.getAllProject();
         }
+
 
         [Authorize]
         [HttpDelete("deleteProject")]

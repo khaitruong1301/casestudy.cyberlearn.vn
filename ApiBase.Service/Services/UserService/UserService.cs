@@ -349,13 +349,13 @@ namespace ApiBase.Service.Services.UserService
                 entity.avatar = "https://ui-avatars.com/api/?name=" + entity.name;
                 entity.alias = FuncUtilities.BestLower(modelVm.name);
                 entity.deleted = false;
-
                 //entity.gender = ;
                 //entity.Id = Guid.NewGuid().ToString();
                 // Mã hóa mật khẩu
                 //entity.MatKhau = BCrypt.Net.BCrypt.HashPassword(modelVm.MatKhau);
                 //entity.avatar = "/static/user-icon.png";
                 entity = await _useJiraRepository.InsertAsync(entity);
+
 
                 if (entity == null)
                     return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, modelVm, MessageConstants.SIGNUP_ERROR);

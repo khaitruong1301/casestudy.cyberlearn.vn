@@ -21,7 +21,6 @@ namespace ApiBase.Api.Controllers
         IUserRepository _userRepository;
         IUserService _userService;
 
-
         public UsersController(IUserRepository userRepository,IUserService userService)
         {
             _userRepository = userRepository;

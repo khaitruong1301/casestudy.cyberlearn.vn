@@ -197,7 +197,7 @@ namespace ApiBase.Service.Services.PriorityService
             IEnumerable<CommentTask> lstCmt =  _userComment.GetMultiByListConditionAndAsync(columns).Result.Select(n =>
             {
                 var user = getUserAsync(n.userId);
-                CommentTask res = new CommentTask() { idUser = n.userId, avatar = user.avatar, name = user.name, commentContent = n.contentComment };
+                CommentTask res = new CommentTask() { id= n.id, idUser = n.userId, avatar = user.avatar, name = user.name, commentContent = n.contentComment };
                 res.commentContent = FuncUtilities.Base64Decode(n.contentComment);
                 return res;
             });

@@ -21,14 +21,10 @@ namespace ApiBase.Api.Controllers
     public class CommentController : ControllerBase
     {
         ICommentService _commentService;
-
-
         public CommentController(ICommentService commentService)
         {
             _commentService = commentService;
         }
-
-
         [HttpGet("getAll")]
        
         public async Task<IActionResult> getAll(int taskId)
@@ -51,7 +47,6 @@ namespace ApiBase.Api.Controllers
         }
 
         [HttpPut("updateComment")]
-
         [Authorize]
 
         public async Task<IActionResult> updateComment ( CommentModelUpdate model)
