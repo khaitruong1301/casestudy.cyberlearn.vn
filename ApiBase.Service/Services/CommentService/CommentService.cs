@@ -125,7 +125,7 @@ namespace ApiBase.Service.Services.CommentService
             try
             {
                 var userJira = _userService.getUserByToken(token);
-                Comment cmt = await _commentRepository.GetSingleByConditionAsync("id", commentUpdate.id);
+                Comment cmt =  _commentRepository.GetSingleByConditionAsync("id", commentUpdate.id).Result;
                 if(cmt == null)
                 {
                     return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Comment is not found !", MessageConstants.MESSAGE_ERROR_500);
