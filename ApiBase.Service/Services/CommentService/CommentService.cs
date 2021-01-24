@@ -100,7 +100,7 @@ namespace ApiBase.Service.Services.CommentService
         {
             try
             {
-                var userJira = await _userService.getUserByToken(token);
+                var userJira =  _userService.getUserByToken(token).Result;
                 Comment cmt = new Comment();
                 cmt.alias = FuncUtilities.BestLower(model.contentComment);
                 cmt.deleted = false;
@@ -130,7 +130,7 @@ namespace ApiBase.Service.Services.CommentService
                 {
                     return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Comment is not found !", MessageConstants.MESSAGE_ERROR_500);
                 }
-                if(cmt.userId != userJira.Id)
+                if(cmt.userId != userJira.Result.id)
                 {
                     return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "403 Forbidden !", MessageConstants.MESSAGE_ERROR_500);
                 }
