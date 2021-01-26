@@ -669,7 +669,7 @@ namespace ApiBase.Service.Services.PriorityService
 
 
 
-            return new ResponseEntity(StatusCodeConstants.OK, "create task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+            return new ResponseEntity(StatusCodeConstants.OK, task, "create task successfully!");
 
         }
 
@@ -792,7 +792,7 @@ namespace ApiBase.Service.Services.PriorityService
 
 
 
-            return new ResponseEntity(StatusCodeConstants.OK, "update task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
+            return new ResponseEntity(StatusCodeConstants.OK, taskModel, "update task successfully!");
         }
 
         public async Task<ResponseEntity> getTaskDetail(int taskId, string token)
