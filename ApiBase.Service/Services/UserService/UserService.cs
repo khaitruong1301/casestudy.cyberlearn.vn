@@ -517,6 +517,7 @@ namespace ApiBase.Service.Services.UserService
             userEdit.name = modelVm.name;
             userEdit.passWord = modelVm.passWord;
                 userEdit.phoneNumber = modelVm.phoneNumber;
+                    userEdit.avatar = "https://ui-avatars.com/api/?name=" + userEdit.name;
                 await _useJiraRepository.UpdateAsync(modelVm.id, userEdit);
 
 
