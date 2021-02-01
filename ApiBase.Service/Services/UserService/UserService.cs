@@ -462,6 +462,9 @@ namespace ApiBase.Service.Services.UserService
                     mem.userId = item.id;
                     mem.name = item.name;
                     mem.avatar = item.avatar;
+                    mem.phoneNumber = item.phoneNumber;
+                    mem.email = item.email;
+                   
                     members.Add(mem);
                 }
                 return new ResponseEntity(StatusCodeConstants.OK, members, MessageConstants.MESSAGE_SUCCESS_200);
