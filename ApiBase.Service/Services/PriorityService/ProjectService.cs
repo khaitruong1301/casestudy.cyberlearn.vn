@@ -101,18 +101,18 @@ namespace ApiBase.Service.Services.PriorityService
             newProject.deleted = false;
             newProject.description = FuncUtilities.Base64Encode( model.description);
             newProject.projectName = model.projectName;
-            if (token != "")
+            if ( !string.IsNullOrEmpty(token))
             {
                 var user = _userJira.GetSingleByConditionAsync("id", _userService.getUserByToken(token).Result.id).Result;
                 newProject.creator = user.id;
             }
             else
             {
-                newProject.creator = 1;//set mặc định khai admin
+                newProject.creator = _userJira.GetAllAsync().Result.First().id;//set mặc định khai admin
             }
             newProject = await _projectRepository.InsertAsync(newProject);
 
-
+            newProject.description = FuncUtilities.Base64Decode(newProject.description);
             return new ResponseEntity(StatusCodeConstants.OK, newProject, MessageConstants.MESSAGE_SUCCESS_200);
 
 
@@ -159,6 +159,7 @@ namespace ApiBase.Service.Services.PriorityService
             if(pro.id != null)
             {
                 creator.id = pro.creator;
+
                 creator.name = _userJira.GetSingleByIdAsync(pro.creator).Result.name;
             }
 

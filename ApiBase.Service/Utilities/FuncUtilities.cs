@@ -170,7 +170,7 @@ namespace ApiBase.Service.Utilities
         }
         public static string Base64Encode(string plainText)
         {
-            return Cipher.Encrypt(plainText, "khai");
+            return Cipher.Encrypt(plainText.Trim(), "khai");
         }
         public static string Base64Decode(string base64EncodedData)
         {
@@ -235,8 +235,8 @@ public static class Cipher
         passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
 
         var bytesDecrypted = Cipher.Decrypt(bytesToBeDecrypted, passwordBytes);
-
-        return Encoding.UTF8.GetString(bytesDecrypted);
+        string kq = Encoding.UTF8.GetString(bytesDecrypted);
+        return kq;
     }
 
     private static byte[] Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
