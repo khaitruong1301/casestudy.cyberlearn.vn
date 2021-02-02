@@ -419,7 +419,7 @@ namespace ApiBase.Service.Services.UserService
 
             if(entity.passWord != modelVm.passWord)
             {
-                return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, modelVm, MessageConstants.EMAIL_EXITST);
+                return new ResponseEntity(StatusCodeConstants.BAD_REQUEST, modelVm, "Tài khoản hoặc mật khẩu không đúng !");
             }
             UserJiraModelView usModel = new UserJiraModelView();
             usModel.id = entity.id;
