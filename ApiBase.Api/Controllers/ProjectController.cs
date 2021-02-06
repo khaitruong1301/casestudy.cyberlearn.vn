@@ -47,11 +47,15 @@ namespace ApiBase.Api.Controllers
             return await _projectService.getProjectById(id);
         }
 
+
+       
+
+
         [Authorize]
         [HttpGet("getAllProject")]
-        public async Task<IActionResult> getAllProject()
+        public async Task<IActionResult> getAllProject(string keyword="")
         {
-            return await _projectService.getAllProject();
+            return await _projectService.getAllProject(keyword);
         }
 
 

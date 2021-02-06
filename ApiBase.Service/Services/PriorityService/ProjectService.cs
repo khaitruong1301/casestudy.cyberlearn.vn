@@ -27,7 +27,7 @@ namespace ApiBase.Service.Services.PriorityService
         Task<ResponseEntity> updateProject(int? idProject,ProjectUpdate projectUpdate,string token);
         Task<ResponseEntity> addUserProject(UserProject project,string token="");
 
-        Task<ResponseEntity> getAllProject();
+        Task<ResponseEntity> getAllProject(string keyword ="");
         Task<ResponseEntity> updateStatusTask(UpdateStatusVM statusTask,string token );
         Task<ResponseEntity> updatePiority(UpdatePiority model,string token);
         Task<ResponseEntity> updateDescription(UpdateDescription model,string token);
@@ -245,21 +245,41 @@ namespace ApiBase.Service.Services.PriorityService
             return new TaskPriority() { priorityId = pri.priorityId, priority = pri.priority };
         }
 
-        public async Task<ResponseEntity> getAllProject()
+        public async Task<ResponseEntity> getAllProject(string keyword="")
         {
             var lstProject = await _projectRepository.GetAllAsync();
             var listResult = new List<ProjectViewModelResult>();
             foreach(var n in lstProject)
             {
-                Creator creator = new Creator();
-                if(n.creator != null )
+                if (keyword.Trim() == "")
                 {
-                    creator.id = n.creator;
-                    creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
-                }
+                    Creator creator = new Creator();
+                    if (n.creator != null)
+                    {
+                        creator.id = n.creator;
+                        creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
+                    }
 
-                var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = FuncUtilities.Base64Decode(n.description), categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator , members = getListMember(n.id) };
-                listResult.Add(result);
+                    var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = FuncUtilities.Base64Decode(n.description), categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator, members = getListMember(n.id) };
+                    listResult.Add(result);
+                }else
+                {
+                    if (n.alias.Contains(FuncUtilities.BestLower(keyword)))
+                    {
+
+
+                        Creator creator = new Creator();
+                        if (n.creator != null)
+                        {
+                            creator.id = n.creator;
+                            creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
+                        }
+
+                        var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = FuncUtilities.Base64Decode(n.description), categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator, members = getListMember(n.id) };
+                        listResult.Add(result);
+                    }
+                }
+                
 
 
             }
