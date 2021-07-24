@@ -718,7 +718,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
             dynamic taskIDD = taskId;
-            IEnumerable<Task_User> taskUser = await _taskUserRepository.GetMultiByConditionAsync("taskId", taskIDD).Result;
+            IEnumerable<Task_User> taskUser =  _taskUserRepository.GetMultiByConditionAsync("taskId", taskIDD).Result;
             List<dynamic> lstIdTaskUser = new List<dynamic>();
             //Xóa task user
             foreach(var taskU in taskUser)
@@ -729,7 +729,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             //Xóa task comment
             dynamic taskCommnetId = taskId;
-            IEnumerable<Comment> comment = await _userComment.GetMultiByConditionAsync("taskId", taskCommnetId).Result;
+            IEnumerable<Comment> comment =  _userComment.GetMultiByConditionAsync("taskId", taskCommnetId).Result;
             List<dynamic> lstIdComment = new List<dynamic>();
             foreach(var item in comment)
             {
@@ -738,10 +738,11 @@ namespace ApiBase.Service.Services.PriorityService
 
             await _userComment.DeleteByIdAsync(lstIdComment);
             //Xóa task
+
             List<dynamic> lst = new List<dynamic>();
             lst.Add(taskId);
 
-            await _taskRepository.DeleteByIdAsync(lst);
+            await _taskRepository.DeleteByTaskIdAsync(lst);
             return new ResponseEntity(StatusCodeConstants.OK, "Remove task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
 
         }

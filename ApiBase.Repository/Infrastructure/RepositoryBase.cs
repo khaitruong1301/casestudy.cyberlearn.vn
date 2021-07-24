@@ -40,6 +40,8 @@ namespace ApiBase.Repository.Infrastructure
         Task<IEnumerable<T>> GetMultiByConditionAsync(string column, dynamic value);
 
         Task<int> DeleteByIdAsync(List<dynamic> listId);
+        Task<int> DeleteByTaskIdAsync(List<dynamic> listId);
+
 
         Task<bool> CheckValidByConditionAsync(string column, dynamic value);
     }
@@ -382,6 +384,24 @@ namespace ApiBase.Repository.Infrastructure
                     parameters.Add("@tableName", _table);
                     parameters.Add("@listId", JsonConvert.SerializeObject(listId));
                     return await conn.ExecuteAsync("DELETE_DATA_BY_ID", parameters, null, null, CommandType.StoredProcedure);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public virtual async Task<int> DeleteByTaskIdAsync(List<dynamic> listId)
+        {
+            try
+            {
+                using (var conn = CreateConnection())
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@tableName", _table);
+                    parameters.Add("@listId", JsonConvert.SerializeObject(listId));
+                    return await conn.ExecuteAsync("DELETE_DATA_BY_TASK_ID", parameters, null, null, CommandType.StoredProcedure);
                 }
             }
             catch (SqlException ex)
