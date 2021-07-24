@@ -10,3 +10,15 @@ D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\A
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csproj.CopyComplete
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.dll
 D:\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.pdb
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Service.deps.json
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Service.dll
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Service.pdb
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Repository.dll
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Repository.pdb
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csprojAssemblyReference.cache
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.AssemblyInfoInputs.cache
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.AssemblyInfo.cs
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csproj.CoreCompileInputs.cache
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csproj.CopyComplete
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.dll
+D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.pdb

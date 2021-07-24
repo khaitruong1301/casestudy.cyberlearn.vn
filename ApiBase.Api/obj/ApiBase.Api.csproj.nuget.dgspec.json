@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj": {}
+    "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj": {}
   },
   "projects": {
-    "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj": {
+    "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
+        "projectUniqueName": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
         "projectName": "ApiBase.Api",
-        "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Api\\obj\\",
+        "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -31,8 +31,8 @@
           "netcoreapp2.1": {
             "targetAlias": "netcoreapp2.1",
             "projectReferences": {
-              "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj": {
-                "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj"
+              "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj": {
+                "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj"
               }
             }
           }
@@ -83,24 +83,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
+    "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
+        "projectUniqueName": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
         "projectName": "ApiBase.Repository",
-        "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\obj\\",
+        "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -159,24 +159,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj": {
+    "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
+        "projectUniqueName": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
         "projectName": "ApiBase.Service",
-        "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\obj\\",
+        "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -190,8 +190,8 @@
           "netcoreapp2.1": {
             "targetAlias": "netcoreapp2.1",
             "projectReferences": {
-              "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
-                "projectPath": "D:\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj"
+              "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
+                "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj"
               }
             }
           }
@@ -259,7 +259,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

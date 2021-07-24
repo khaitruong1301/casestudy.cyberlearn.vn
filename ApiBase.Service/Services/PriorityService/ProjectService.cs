@@ -320,7 +320,7 @@ namespace ApiBase.Service.Services.PriorityService
             project.creator = _userService.getUserByToken(token).Result.id;
             project.description = FuncUtilities.Base64Encode(projectUpdate.description);
             project.projectName = projectUpdate.projectName;
-
+            project.categoryId = int.Parse( projectUpdate.categoryId)   ;
             var result = _projectRepository.UpdateAsync(idProject, project).Result;
 
             
@@ -558,7 +558,7 @@ namespace ApiBase.Service.Services.PriorityService
             var taskUser = _taskUserRepository.GetMultiByListConditionAndAsync(columns).Result;
             if(taskUser.Count() >0)
             {
-                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "User is unthorization!", MessageConstants.ACCOUNT_EXITST_TASK);
+                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "This user is registered !", MessageConstants.ACCOUNT_EXITST_TASK);
 
             }
             Task_User taskUserInsert = new Task_User();
@@ -726,6 +726,7 @@ namespace ApiBase.Service.Services.PriorityService
                 lstIdTaskUser.Add(taskU.id);
             }
             await _taskUserRepository.DeleteByIdAsync(lstIdTaskUser);
+
             //Xóa task comment
             dynamic taskCommnetId = taskId;
             IEnumerable<Comment> comment = await _userComment.GetMultiByConditionAsync("taskId", taskCommnetId).Result;
@@ -738,7 +739,7 @@ namespace ApiBase.Service.Services.PriorityService
             await _userComment.DeleteByIdAsync(lstIdComment);
             //Xóa task
             List<dynamic> lst = new List<dynamic>();
-            lst.Add(task.taskId);
+            lst.Add(taskId);
 
             await _taskRepository.DeleteByIdAsync(lst);
             return new ResponseEntity(StatusCodeConstants.OK, "Remove task successfully!", MessageConstants.MESSAGE_SUCCESS_200);
@@ -787,6 +788,8 @@ namespace ApiBase.Service.Services.PriorityService
             taskModel.reporterId = user.id;
             taskModel.priorityId = model.priorityId;
             taskModel.deleted = false;
+            //taskModel.listUserAsign = model.listUserAsign;
+
             await _taskRepository.UpdateAsync("taskId",taskModel.taskId,taskModel);
 
             //dell user cũ 
@@ -822,10 +825,10 @@ namespace ApiBase.Service.Services.PriorityService
             var n =  _taskRepository.GetSingleByConditionAsync("taskId",taskId).Result;
             if (n != null)
             {
-                var lstStatus = await _statusRepository.GetAllAsync();
+                //var lstStatus = await _statusRepository.GetAllAsync();
 
                 //Lấy list priority
-                IEnumerable<Priority> lstPriority = await _priorityRepository.GetAllAsync();
+                IEnumerable<Priority> lstPriority =  _priorityRepository.GetAllAsync().Result;
                 TaskDetail task = new TaskDetail { taskId = n.taskId, taskName = n.taskName, alias = n.alias, description = FuncUtilities.Base64Decode( n.description), statusId = n.statusId, priorityTask = getTaskPriority(n.priorityId, lstPriority), originalEstimate = n.originalEstimate, timeTrackingSpent = n.timeTrackingSpent, timeTrackingRemaining = n.timeTrackingRemaining, assigness = getListUserAsign(n.taskId).ToList(), taskTypeDetail = getTaskType(n.typeId), lstComment = getListComment(n.taskId).ToList(),projectId=n.projectId,priorityId = n.priorityId,typeId=n.typeId };
                 return new ResponseEntity(StatusCodeConstants.OK, task, MessageConstants.MESSAGE_SUCCESS_200);
 
