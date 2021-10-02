@@ -13397,11 +13397,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
       "projectName": "ApiBase.Api",
-      "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Api\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13421,8 +13421,8 @@
         "netcoreapp2.1": {
           "targetAlias": "netcoreapp2.1",
           "projectReferences": {
-            "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj": {
-              "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj"
+            "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj"
             }
           }
         }

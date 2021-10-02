@@ -1405,11 +1405,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
       "projectName": "ApiBase.Repository",
-      "projectPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\cyberlearn.vn\\casestudy.cyberlearn.vn\\ApiBase.Repository\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

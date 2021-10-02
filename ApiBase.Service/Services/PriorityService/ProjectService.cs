@@ -257,7 +257,14 @@ namespace ApiBase.Service.Services.PriorityService
                     if (n.creator != null)
                     {
                         creator.id = n.creator;
-                        creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
+                        UserJira us = _userJira.GetSingleByIdAsync(creator.id).Result;
+                        if (us != null)
+                        {
+                            creator.name = _userJira.GetSingleByIdAsync(creator.id).Result.name;
+                        }else
+                        {
+                            creator.name = "User đã bị xóa !";
+                        }
                     }
 
                     var result = new ProjectViewModelResult { id = n.id, projectName = n.projectName, alias = n.alias, deleted = n.deleted, description = FuncUtilities.Base64Decode(n.description), categoryName = _projectCategoryRepository.GetSingleByIdAsync(n.categoryId).Result.projectCategoryName, categoryId = n.categoryId, creator = creator, members = getListMember(n.id) };

@@ -16,3 +16,12 @@ D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcorea
 D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.csproj.CoreCompileInputs.cache
 D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.dll
 D:\cyberlearn.vn\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.pdb
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Release\netcoreapp2.1\ApiBase.Repository.deps.json
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Release\netcoreapp2.1\ApiBase.Repository.dll
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Release\netcoreapp2.1\ApiBase.Repository.pdb
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.csprojAssemblyReference.cache
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.AssemblyInfo.cs
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.dll
+C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.pdb
