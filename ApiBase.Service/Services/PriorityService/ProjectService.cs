@@ -774,14 +774,14 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
 
-            string alias = FuncUtilities.BestLower(model.taskName);
-            //Kiểm tra task tồn tại chưa
-            var taskValid = _taskRepository.GetSingleByConditionAsync("alias", alias).Result;
-            if (taskValid.taskId != taskModel.taskId)
-            {
-                return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Task name already exists!", MessageConstants.MESSAGE_ERROR_500);
+            //string alias = FuncUtilities.BestLower(model.taskName);
+            ////Kiểm tra task tồn tại chưa
+            //var taskValid = _taskRepository.GetSingleByConditionAsync("alias", alias).Result;
+            //if (taskValid.taskId != taskModel.taskId)
+            //{
+            //    return new ResponseEntity(StatusCodeConstants.ERROR_SERVER, "Task name already exists!", MessageConstants.MESSAGE_ERROR_500);
 
-            }
+            //}
 
 
             taskModel.taskName = model.taskName;
