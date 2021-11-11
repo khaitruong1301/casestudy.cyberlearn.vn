@@ -303,10 +303,20 @@ namespace ApiBase.Service.Services.PriorityService
                 mem.userId = project.userId;
                 dynamic id = mem.userId;
                 UserJira user = _userJira.GetSingleByIdAsync(id).Result;
-                mem.userId = user.id;
-                mem.name = user.name;
-                mem.avatar = user.avatar;
-                lst.Add(mem);
+                if(user != null)
+                {
+                    mem.userId = user.id;
+                    mem.name = user.name;
+                    mem.avatar = user.avatar;
+                    lst.Add(mem);
+
+                }
+                else
+                {
+                    lst.Add(new ViewModels.ProjectViewModel.Member());
+                }
+              
+              
             }
             return lst;
         }
