@@ -663,6 +663,10 @@ namespace ApiBase.Service.Services.PriorityService
                 return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
 
             }
+            if (user == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "User is not found!", MessageConstants.MESSAGE_ERROR_404);
+            }
             if (pro.creator != user.id)
             {
                 return new ResponseEntity(StatusCodeConstants.FORBIDDEN, "User is unthorization!", MessageConstants.MESSAGE_ERROR_403);

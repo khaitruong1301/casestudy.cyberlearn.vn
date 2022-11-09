@@ -4,7 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\publish\</_PublishTargetUrl>
-    <History>True|2021-11-11T05:51:40.1309945Z;True|2021-10-24T22:39:45.6669485+07:00;True|2021-10-02T22:37:47.0711986+07:00;True|2021-07-24T21:11:59.6501312+07:00;True|2021-07-24T21:11:39.1783549+07:00;True|2021-07-24T20:35:13.3460779+07:00;</History>
+    <_PublishTargetUrl>C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Api\bin\Release\netcoreapp2.1\publish\</_PublishTargetUrl>
+    <History>True|2022-11-09T09:34:00.9289042Z;True|2021-11-11T12:51:40.1309945+07:00;True|2021-10-24T22:39:45.6669485+07:00;True|2021-10-02T22:37:47.0711986+07:00;True|2021-07-24T21:11:59.6501312+07:00;True|2021-07-24T21:11:39.1783549+07:00;True|2021-07-24T20:35:13.3460779+07:00;</History>
+    <LastFailureDetails />
   </PropertyGroup>
 </Project>

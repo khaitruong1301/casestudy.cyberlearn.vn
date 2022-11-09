@@ -25,3 +25,13 @@ C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netco
 C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.csproj.CoreCompileInputs.cache
 C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.dll
 C:\Users\HP\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.pdb
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Release\netcoreapp2.1\ApiBase.Repository.deps.json
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Release\netcoreapp2.1\ApiBase.Repository.dll
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\bin\Release\netcoreapp2.1\ApiBase.Repository.pdb
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.csproj.AssemblyReference.cache
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.AssemblyInfoInputs.cache
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.AssemblyInfo.cs
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.csproj.CoreCompileInputs.cache
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.dll
+C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Repository\obj\Release\netcoreapp2.1\ApiBase.Repository.pdb
