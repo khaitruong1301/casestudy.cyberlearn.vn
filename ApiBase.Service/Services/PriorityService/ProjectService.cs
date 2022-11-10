@@ -569,6 +569,7 @@ namespace ApiBase.Service.Services.PriorityService
 
             }
 
+
             List<KeyValuePair<string, dynamic>> columns = new List<KeyValuePair<string, dynamic>>();
             columns.Add(new KeyValuePair<string, dynamic>("taskId", model.taskId));
             columns.Add(new KeyValuePair<string, dynamic>("userId", model.userId));
@@ -658,9 +659,17 @@ namespace ApiBase.Service.Services.PriorityService
         {
             UserJira user = _userService.getUserByToken(token).Result;
             Project pro = _projectRepository.GetSingleByConditionAsync("id", model.projectId).Result;
+            
+
             if (pro == null)
             {
                 return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
+
+            }
+            var prio = _priorityRepository.GetSingleByConditionAsync("priorityId", model.priorityId).Result;
+            if (prio == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "PriorityId is invalid!", MessageConstants.MESSAGE_ERROR_500);
 
             }
             if (user == null)
