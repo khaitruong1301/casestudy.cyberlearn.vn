@@ -47,3 +47,16 @@ C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\
 C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csproj.CopyComplete
 C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.dll
 C:\Users\khaitruong\Desktop\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.pdb
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Service.deps.json
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Service.dll
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Service.pdb
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Repository.dll
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\bin\Release\netcoreapp2.1\ApiBase.Repository.pdb
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csproj.AssemblyReference.cache
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.AssemblyInfoInputs.cache
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.AssemblyInfo.cs
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csproj.CoreCompileInputs.cache
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.csproj.CopyComplete
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.dll
+C:\Users\khaitruong\Desktop\cybersoft\casestudy.cyberlearn.vn\ApiBase.Service\obj\Release\netcoreapp2.1\ApiBase.Service.pdb

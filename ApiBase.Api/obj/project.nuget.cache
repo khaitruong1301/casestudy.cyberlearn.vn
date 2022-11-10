@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BCx5zzxdaqGsZm/HRUKxgyedqisFcsTYS6rK9dJOrI0JBM6P8tnNkVc3+EYE/Gn0tI5VanlUus1dymPe4tnw3g==",
+  "dgSpecHash": "exemznyIurQGe4rb70DmXkgW7PJYpPc+IXs9ZHaRQqdkUeuwLdS4jHusWTVnqkirry8ljAlLx3AXtxjWwcBX5w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
+  "projectFilePath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Api\\ApiBase.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khaitruong\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\khaitruong\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {}
+    "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
+    "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
         "projectName": "ApiBase.Repository",
-        "projectPath": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
+        "projectPath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
         "packagesPath": "C:\\Users\\khaitruong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\obj\\",
+        "outputPath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\khaitruong\\AppData\\Roaming\\NuGet\\NuGet.Config",

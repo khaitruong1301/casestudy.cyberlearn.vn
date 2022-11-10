@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bwiyw0zxSaYrwm7h6tL0Pvzet/XI+2S0jeE5Im7OFSvPoF8+n73iGpK019ufgwgORzhJI95hqHqao047jJd5yQ==",
+  "dgSpecHash": "oKlZqHZq9hhLrnIGfEFyhmOef7s9HOzoO0a26/L9zMfFntPhN1hyBfrcHI/hC479UOB/lo702mAGlS533GAUFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
+  "projectFilePath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khaitruong\\.nuget\\packages\\dapper\\2.0.30\\dapper.2.0.30.nupkg.sha512",
     "C:\\Users\\khaitruong\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.1.1\\microsoft.extensions.configuration.abstractions.2.1.1.nupkg.sha512",

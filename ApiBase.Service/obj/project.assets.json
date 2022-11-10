@@ -7831,11 +7831,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
+      "projectUniqueName": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
       "projectName": "ApiBase.Service",
-      "projectPath": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
+      "projectPath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\ApiBase.Service.csproj",
       "packagesPath": "C:\\Users\\khaitruong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Service\\obj\\",
+      "outputPath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\khaitruong\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7852,8 +7852,8 @@
         "netcoreapp2.1": {
           "targetAlias": "netcoreapp2.1",
           "projectReferences": {
-            "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
-              "projectPath": "C:\\Users\\khaitruong\\Desktop\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj"
+            "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj": {
+              "projectPath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\casestudy.cyberlearn.vn\\ApiBase.Repository\\ApiBase.Repository.csproj"
             }
           }
         }

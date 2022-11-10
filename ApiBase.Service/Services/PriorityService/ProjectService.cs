@@ -557,7 +557,11 @@ namespace ApiBase.Service.Services.PriorityService
 
             UserJira user = _userService.getUserByToken(token).Result;
             Project pro = _projectRepository.GetSingleByConditionAsync("id", task.projectId).Result;
+            if (user == null)
+            {
+                return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "User is not found!", MessageConstants.MESSAGE_ERROR_404);
 
+            }
             if (pro == null)
             {
                 return new ResponseEntity(StatusCodeConstants.NOT_FOUND, "Project is not found!", MessageConstants.MESSAGE_ERROR_404);
